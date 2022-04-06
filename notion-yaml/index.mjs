@@ -26,15 +26,19 @@ const questions = notionQuestions
   )
   .filter(question => !!question.title);
 
-let locales = [];
+let locales = {};
 if (NOTION_LOCALES_DBID) {
   const notionLocales = await Notion.getDatabase(NOTION_LOCALES_DBID);
-  locales = notionLocales.map(notionLocale => ({
-    [Notion.getProp(notionLocale, "Clé")]: Notion.getProp(
-      notionLocale,
-      "Valeur"
-    ),
-  }));
+  locales = notionLocales.reduce(
+    (acc, notionLocale) => ({
+      ...acc,
+      [Notion.getProp(notionLocale, "Clé")]: Notion.getProp(
+        notionLocale,
+        "Valeur"
+      ),
+    }),
+    {}
+  );
 }
 
 const jsonContent = {
