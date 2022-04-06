@@ -1,0 +1,16 @@
+{
+  "name": "notion-yaml",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tim Izzo (octree.ch)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --experimental-top-level-await index.mjs"
+  },
+  "dependencies": {
+    "@notionhq/client": "^1.0.4",
+    "dotenv": "^16.0.0",
+    "json-to-pretty-yaml": "^1.2.2",
+    "json2yaml": "^1.1.0"
+  }
+}
