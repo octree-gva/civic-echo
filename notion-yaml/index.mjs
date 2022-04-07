@@ -12,10 +12,18 @@ const {
   DEFAULT_LANG = "fr",
 } = process.env;
 
-const notionQuestions = await Notion.getDatabase(NOTION_QUESTIONS_DBID);
+const notionQuestions = await Notion.getDatabase(NOTION_QUESTIONS_DBID, {
+  sorts: [
+    {
+      property: "Ordre",
+      direction: "ascending",
+    },
+  ],
+});
 const questions = notionQuestions
   .map(notionQuestion =>
     removeEmptyKeys({
+      id: notionQuestion.id,
       title: Notion.getProp(notionQuestion, "Question"),
       description: Notion.getProp(notionQuestion, "Description"),
       category: Notion.getProp(notionQuestion, "Catégorie"),

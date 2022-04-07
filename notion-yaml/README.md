@@ -23,6 +23,7 @@ This database must match to a fixed structure. Eventually, the expected structur
 - `Type`: Type of the question for frontend generation. See below for possible types.
 - `Hyperlien`: URL to use for a question of type _Bouton_
 - `Réponses`: List of possible responses for a question of type _Choix unique_ (CSV format)
+- `Ordre`: Question order index for frontend display
 
 Possible types:
 

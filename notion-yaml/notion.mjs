@@ -36,24 +36,29 @@ export const getProp = (notionItem, propertyName) => {
   }
 };
 
-export const getDatabase = async (databaseId, filter) => {
-  let response = await queryDatabase(databaseId, filter);
+export const getDatabase = async (databaseId, options = {}) => {
+  let response = await queryDatabase(databaseId, options);
   let results = response.results;
 
   while (response.has_more) {
-    response = await queryDatabase(databaseId, filter, response.next_cursor);
+    response = await queryDatabase(
+      databaseId,
+      { filter, sorts },
+      response.next_cursor
+    );
     results = [...results, ...response.results];
   }
-
   return results;
 };
 
-const queryDatabase = async (databaseId, filter, start_cursor) => {
+const queryDatabase = async (databaseId, options = {}, start_cursor) => {
   try {
+    const { filter, sorts } = options;
     const response = await notionClient.databases.query({
       database_id: databaseId,
       start_cursor,
       filter,
+      sorts,
     });
     console.log(
       `Got ${response?.results.length} results from db ${databaseId}`
