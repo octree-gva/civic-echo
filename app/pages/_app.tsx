@@ -5,8 +5,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "../theme";
-import createEmotionCache from "../utils/createEmotionCache";
+import createEmotionCache from "../lib/createEmotionCache";
 import { useHydrate, Provider } from "../stores/questions";
+import useI18n from "../hooks/useI18n";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -15,9 +16,12 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-export default function MyApp(props: MyAppProps) {
+const MyApp = (props: MyAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const store = useHydrate(pageProps.initialZustandState);
+  const { initialZustandState, lang, locales } = pageProps;
+  const store = useHydrate(initialZustandState);
+  useI18n({ locales, lang });
+
   return (
     <Provider createStore={() => store}>
       <CacheProvider value={emotionCache}>
@@ -31,4 +35,6 @@ export default function MyApp(props: MyAppProps) {
       </CacheProvider>
     </Provider>
   );
-}
+};
+
+export default MyApp;
