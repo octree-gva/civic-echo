@@ -17,7 +17,7 @@ const Topbar = (props: Props) => {
         ...aujourd'hui?
       </Typography>
       <Box>
-        <Button onClick={nextQuestion}>{t`next`}</Button>
+        <Button onClick={nextQuestion}>{t`generic.skip`}</Button>
       </Box>
     </Box>
   );

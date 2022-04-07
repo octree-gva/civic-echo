@@ -7,9 +7,9 @@ interface QuestionsStore {
   questions: FormQuestion[];
   currentIndex: number;
 
-  setQuestions?: (questions: FormQuestion[]) => void;
-  nextQuestion?: () => void;
-  previousQuestion?: () => void;
+  setQuestions: (questions: FormQuestion[]) => void;
+  nextQuestion: () => void;
+  previousQuestion: () => void;
 }
 
 let store: UseBoundStore<QuestionsStore> | undefined;
