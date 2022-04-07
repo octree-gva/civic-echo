@@ -12,7 +12,7 @@ const Name = (props: Props) => {
   const updatePerson = usePersonStore(s => s.updatePerson);
   const nextView = usePersonStore(s => s.nextView);
 
-  const onChange = event => {
+  const onChange = (event: any) => {
     updatePerson({ name: event.target.value });
   };
 

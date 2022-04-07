@@ -21,11 +21,11 @@ const Email = (props: Props) => {
   const nextView = usePersonStore(s => s.nextView);
   const isEmailValid = useMemo(() => email?.match(EMAIL_REGEX), [email]);
 
-  const onTextChange = event => {
+  const onTextChange = (event: any) => {
     updatePerson({ email: event.target.value });
   };
 
-  const onCheckboxChange = event => {
+  const onCheckboxChange = (event: any) => {
     updatePerson({ acceptNotif: event.target.checked });
   };
 
