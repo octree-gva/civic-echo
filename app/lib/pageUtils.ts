@@ -1,19 +1,5 @@
-import type { GetStaticProps, NextPage } from "next";
-import Box from "@mui/material/Box";
+import type { GetStaticProps } from "next";
 import langs, { LANGS, getLangContent } from "../langs";
-import Questions from "../containers/Questions";
-import Topbar from "../containers/Topbar";
-
-interface Props {}
-
-const QuestionsPage: NextPage<Props> = (props: Props) => {
-  return (
-    <Box>
-      <Topbar />
-      <Questions />
-    </Box>
-  );
-};
 
 export const getStaticProps: GetStaticProps = async context => {
   const selectedLang = context.params?.lang || "fr";
@@ -36,5 +22,3 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-export default QuestionsPage;

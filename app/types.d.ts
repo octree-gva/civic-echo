@@ -23,3 +23,10 @@ type FormResponse = {
   questionId: string;
   content: string;
 };
+
+type Person = {
+  name?: string;
+  email?: string;
+  birthdate?: DateTime;
+  acceptNotif?: boolean;
+};

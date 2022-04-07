@@ -1,9 +1,9 @@
-import { useQuestionsStore } from "../../stores/questions";
 import useResponsesStore from "../../stores/responses";
 import ListChoice from "./ListChoice";
 import YesNo from "./YesNo";
 import Text from "./Text";
 import Button from "./Button";
+import useNextQuestion from "../../hooks/useNextQuestion";
 
 const TYPES = {
   LIST_CHOICE: "Choix unique",
@@ -18,7 +18,7 @@ interface Props {
 
 const Responses = (props: Props) => {
   const { question } = props;
-  const nextQuestion = useQuestionsStore(s => s.nextQuestion);
+  const nextQuestion = useNextQuestion();
   const addResponse = useResponsesStore(s => s.addResponse);
 
   const onRespond = (response: string) => {

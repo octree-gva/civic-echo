@@ -9,7 +9,7 @@ const Questions = (props: Props) => {
   const questions = useQuestionsStore(s => s.questions);
   const currentQuestion = questions[currentIndex];
 
-  if (!currentQuestion) return <Box>Il y a eu une erreur</Box>;
+  if (!currentQuestion) return null;
 
   return (
     <Box>

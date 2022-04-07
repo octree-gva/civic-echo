@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import Box from "@mui/material/Box";
 
 interface Props {}
 
-const Home: NextPage<Props> = (props: Props) => {
-  return <Box>Choose lang</Box>;
-};
+// Redirection to /fr set in `next.config.js`
+const Home: NextPage<Props> = (props: Props) => null;
 
 export default Home;

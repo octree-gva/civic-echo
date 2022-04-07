@@ -2,13 +2,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
-import { useQuestionsStore } from "../../stores/questions";
 
-interface Props {}
+interface Props {
+  onNext?: () => void;
+}
 
 const Topbar = (props: Props) => {
+  const { onNext } = props;
   const { t } = useTranslation();
-  const nextQuestion = useQuestionsStore(s => s.nextQuestion);
 
   return (
     <Box position="static" display="flex" justifyContent="space-between" p={2}>
@@ -16,9 +17,7 @@ const Topbar = (props: Props) => {
         Demain c'est <br />
         ...aujourd'hui?
       </Typography>
-      <Box>
-        <Button onClick={nextQuestion}>{t`generic.skip`}</Button>
-      </Box>
+      <Box>{onNext && <Button onClick={onNext}>{t`generic.skip`}</Button>}</Box>
     </Box>
   );
 };
