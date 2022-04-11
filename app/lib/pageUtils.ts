@@ -9,9 +9,8 @@ export const getStaticProps: GetStaticProps = async context => {
 
   return {
     props: {
-      initialZustandState: { questions },
+      initialZustandState: { questions, lang: selectedLang },
       locales,
-      lang: selectedLang,
     },
   };
 };

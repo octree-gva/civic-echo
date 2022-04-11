@@ -3,10 +3,12 @@ import { DateTime } from "luxon";
 
 type PersonStore = {
   person: Person;
+  completeForm: boolean;
   getPerson: () => Person;
   updatePerson: (update: Person) => void;
   currentViewIndex: number;
   nextView: () => void;
+  setCompleteForm: (completeForm: boolean) => void;
 };
 
 const usePersonStore = create<PersonStore>((set, get) => ({
@@ -17,11 +19,13 @@ const usePersonStore = create<PersonStore>((set, get) => ({
     acceptNotif: false,
   },
   currentViewIndex: 0,
+  completeForm: false,
+
   getPerson: () => {
     const person = get().person;
     return {
       ...person,
-      birtdate: person.birthdate?.toISODate(),
+      birthdate: person.birthdate?.toISODate(),
     };
   },
   updatePerson: update => {
@@ -32,6 +36,7 @@ const usePersonStore = create<PersonStore>((set, get) => ({
     const currentIndex = get().currentViewIndex;
     set({ currentViewIndex: currentIndex + 1 });
   },
+  setCompleteForm: completeForm => set({ completeForm }),
 }));
 
 export default usePersonStore;

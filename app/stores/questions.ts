@@ -12,7 +12,7 @@ interface QuestionsStore {
   previousQuestion: () => void;
 }
 
-let store: UseBoundStore<QuestionsStore> | undefined;
+export let store: UseBoundStore<QuestionsStore> | undefined;
 
 const zustandContext = createContext<QuestionsStore>();
 export const Provider = zustandContext.Provider;

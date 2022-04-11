@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { MongoClient } from "mongodb";
 import { DateTime } from "luxon";
+import * as Notion from "../../lib/notion";
 
-const { MONGO_URL = "", MONGO_DB = "survey" } = process.env;
+const { MONGO_URL = "", MONGO_DB = "survey", NOTION_DBID } = process.env;
 const COLLECTION_NAME = "responses";
 
 const mongoDB = new MongoClient(MONGO_URL);
@@ -12,15 +13,24 @@ type DataResponse = {
   responses: object;
 };
 
+type ResponseContext = {
+  datetime: string;
+  lang: string;
+  completeForm?: boolean;
+};
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { person, responses } = req.body || {};
-    const datetime = DateTime.now().toISOTime();
-    const response: DataResponse = {
+    const { person, responses, completeForm, lang } = req.body || {};
+    const datetime = DateTime.now().toISO();
+    const response: DataResponse & ResponseContext = {
       responses: formatResponses(responses),
       datetime,
+      lang,
+      completeForm,
     };
     await insertResponse(response);
+    await insertPerson(person, { datetime, completeForm, lang });
     res.status(200).json({ success: true });
   } catch (error) {
     console.error(error);
@@ -39,6 +49,51 @@ const insertResponse = async (response: DataResponse) => {
     console.error(error);
   }
   mongoDB.close();
+};
+
+const insertPerson = async (person: Person, context: ResponseContext) => {
+  if (!NOTION_DBID) {
+    console.warn(`No NOTION_DBID provided`);
+    return null;
+  }
+
+  const properties = {
+    ["Nom"]: {
+      title: [
+        {
+          text: {
+            content: person.name,
+          },
+        },
+      ],
+    },
+    ["Email"]: {
+      email: person.email,
+    },
+    ["Date de naissance"]: {
+      date: {
+        start: person.birthdate,
+      },
+    },
+    ["Répondu le"]: {
+      date: {
+        start: context.datetime,
+      },
+    },
+    ["Langue"]: {
+      select: {
+        name: context.lang,
+      },
+    },
+    ["Notifications"]: {
+      checkbox: person.acceptNotif,
+    },
+    ["Totalité"]: {
+      checkbox: !!context.completeForm,
+    },
+  };
+
+  return Notion.insertIntoDatabase(NOTION_DBID, properties);
 };
 
 const formatResponses = (responses: FormResponse[]) =>
