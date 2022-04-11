@@ -21,7 +21,7 @@ const Responses = (props: Props) => {
   const nextQuestion = useNextQuestion();
   const addResponse = useResponsesStore(s => s.addResponse);
 
-  const onRespond = (response: string) => {
+  const onRespond = (response: number | string) => {
     addResponse({
       questionId: question.id,
       content: response,

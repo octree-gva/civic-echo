@@ -1,8 +1,7 @@
-import { forwardRef, useState } from "react";
+import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import Slide from "@mui/material/Slide";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -35,12 +34,7 @@ const StopDialog = (props: Props) => {
   const onClose = () => (window.location.href = router.asPath);
 
   return (
-    <Dialog
-      open={open}
-      TransitionComponent={Transition}
-      keepMounted
-      onClose={toggle}
-    >
+    <Dialog open={open} keepMounted onClose={toggle}>
       {!sent && (
         <DialogContent sx={{ textAlign: "center" }}>
           <DialogContentText>
@@ -76,9 +70,5 @@ const StopDialog = (props: Props) => {
     </Dialog>
   );
 };
-
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 export default StopDialog;

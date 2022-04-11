@@ -7,6 +7,7 @@ type Payload = {
   person: Person;
   lang: string;
   completeForm: boolean;
+  src: string;
 };
 
 export const sendResponse = async () => {

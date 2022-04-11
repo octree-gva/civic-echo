@@ -21,7 +21,7 @@ type FormQuestion = {
 
 type FormResponse = {
   questionId: string;
-  content: string;
+  content: number | string;
 };
 
 type Person = {
