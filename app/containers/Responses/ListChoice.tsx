@@ -3,14 +3,14 @@ import Chips from "../../components/Chips";
 
 interface Props {
   question: FormQuestion;
-  onRespond: (response: string) => void;
+  onRespond: (responseIndex: number) => void;
 }
 
 const ListChoice = (props: Props) => {
   const { question, onRespond } = props;
 
-  const onChange = (chips: string[]) => {
-    onRespond(chips[0]);
+  const onChange = (chip: string, index: number) => {
+    onRespond(index);
   };
 
   return (
