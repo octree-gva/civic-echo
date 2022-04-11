@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import StopDialog from "./StopDialog";
+import Share from "./Share";
 
 interface Props {}
 
@@ -20,6 +21,7 @@ const Bottombar = (props: Props) => {
         pb={1}
       >
         <Button>{t`bottom.moreInfo`}</Button>
+        <Share />
         <Button onClick={toggleDialog}>{t`bottom.stopSurvey`}</Button>
       </Box>
       <StopDialog open={openDialog} toggle={toggleDialog} />

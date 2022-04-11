@@ -14,7 +14,7 @@ const useNextQuestion = () => {
     if (questionsCount > currentIndex + 1) nextQuestion();
     else {
       setCompleteForm(true);
-      router.push(`${router.asPath}/send`);
+      router.push(`${router.query.lang}/send${window.location.search}`);
     }
   }, [questionsCount, currentIndex]);
 

@@ -30,7 +30,8 @@ const StopDialog = (props: Props) => {
     }
   };
 
-  const onGoToPersonal = () => router.push(`${router.asPath}/send`);
+  const onGoToPersonal = () =>
+    router.push(`${router.query.lang}/send${window.location.search}`);
   const onClose = () => (window.location.href = router.asPath);
 
   return (

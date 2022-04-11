@@ -8,6 +8,9 @@ locales:
   stop.title: "Une boisson offerte aux prochains événements de la transition"
   bottom.stopSurvey: "Arrêter l’enquête"
   bottom.moreInfo: "Plus d’infos"
+  share.shareLink: "Partagez ce lien à vos amis"
+  share.message: Hey ! Réponds au sondage du Grand Genève en Transition !
+  share.copyLink: Copier le lien
   confirm.secondaryText: "a complété le questionnaire. Fais une capture d’écran !"
   confirm.title: "Merci!"
   confirm.primaryText: "Montre ce bon et reçoit une boisson offerte lors du prochain événement de la transition."
@@ -26,6 +29,7 @@ locales:
   generic.skip: "Passer"
   generic.next: "Suivant"
   generic.close: "Fermer"
+  generic.share: "Partager"
 questions:
   - id: "9024f6ae-4817-4e3b-9ccb-b9b8788f9e29"
     title: "Au cours de la semaine passée, avez-vous passé la frontière ?"

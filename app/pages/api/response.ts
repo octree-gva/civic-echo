@@ -5,6 +5,7 @@ import * as Notion from "../../lib/notion";
 
 const { MONGO_URL = "", MONGO_DB = "survey", NOTION_DBID } = process.env;
 const COLLECTION_NAME = "responses";
+const AUTHORIZED_SOURCE = ["direct", "share", "iframe", "other"];
 
 const mongoDB = new MongoClient(MONGO_URL);
 
@@ -17,20 +18,27 @@ type ResponseContext = {
   datetime: string;
   lang: string;
   completeForm?: boolean;
+  source: string;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { person, responses, completeForm, lang } = req.body || {};
+    const {
+      person,
+      responses,
+      completeForm,
+      lang,
+      src = "direct",
+    } = req.body || {};
     const datetime = DateTime.now().toISO();
+    const source = AUTHORIZED_SOURCE.includes(src) ? src : "other";
+    const context = { datetime, lang, completeForm, source };
     const response: DataResponse & ResponseContext = {
       responses: formatResponses(responses),
-      datetime,
-      lang,
-      completeForm,
+      ...context,
     };
     await insertResponse(response);
-    await insertPerson(person, { datetime, completeForm, lang });
+    await insertPerson(person, context);
     res.status(200).json({ success: true });
   } catch (error) {
     console.error(error);
@@ -92,6 +100,11 @@ const insertPerson = async (person: Person, context: ResponseContext) => {
     },
     ["Totalité"]: {
       checkbox: !!context.completeForm,
+    },
+    ["Source"]: {
+      select: {
+        name: context.source,
+      },
     },
   };
 

@@ -14,9 +14,16 @@ export const sendResponse = async () => {
   const { responses } = useResponsesStore.getState();
   const person = usePersonStore.getState().getPerson();
   const completeForm = usePersonStore.getState().completeForm;
+  const src = getSource();
 
   if (responses?.length > 0)
-    return sendApi({ responses, person, lang, completeForm });
+    return sendApi({ responses, person, lang, completeForm, src });
+};
+
+const getSource = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get("src") || "direct";
 };
 
 const sendApi = async (payload: Payload) => {
