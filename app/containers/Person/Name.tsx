@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
+import { sendResponse } from "../../lib/sendResponse";
 
 interface Props {}
 
@@ -16,6 +17,15 @@ const Name = (props: Props) => {
     updatePerson({ name: event.target.value });
   };
 
+  const onNext = async () => {
+    try {
+      await sendResponse();
+      nextView();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`name.title`}</Typography>
@@ -24,13 +34,13 @@ const Name = (props: Props) => {
         fullWidth
         autoFocus
         label={t`name.label`}
-        placeholder="kai@example.com"
+        placeholder="Kai Doe"
         onChange={onChange}
       />
       <Button
         sx={{ mt: 4 }}
         variant="contained"
-        onClick={nextView}
+        onClick={onNext}
       >{t`generic.next`}</Button>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
@@ -11,6 +11,10 @@ interface Props {
 const Chips = (props: Props) => {
   const { options, onChange } = props;
   const [selectedChips, setSelectedChips] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedChips([]);
+  }, [options]);
 
   const onClickChip = (clickedChip: string) => {
     let chips = selectedChips.slice();
