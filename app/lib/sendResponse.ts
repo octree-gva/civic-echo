@@ -14,7 +14,9 @@ export const sendResponse = async () => {
   const { responses } = useResponsesStore.getState();
   const person = usePersonStore.getState().getPerson();
   const completeForm = usePersonStore.getState().completeForm;
-  return sendApi({ responses, person, lang, completeForm });
+
+  if (responses?.length > 0)
+    return sendApi({ responses, person, lang, completeForm });
 };
 
 const sendApi = async (payload: Payload) => {

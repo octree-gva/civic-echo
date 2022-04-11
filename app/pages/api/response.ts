@@ -57,6 +57,8 @@ const insertPerson = async (person: Person, context: ResponseContext) => {
     return null;
   }
 
+  if (!person?.email) return null;
+
   const properties = {
     ["Nom"]: {
       title: [

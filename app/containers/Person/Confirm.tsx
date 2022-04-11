@@ -14,7 +14,9 @@ const Confirm = (props: Props) => {
       <Typography variant="h4">{t`confirm.title`}</Typography>
       <Typography>Image</Typography>
       <Typography color="primary">{t`confirm.primaryText`}</Typography>
-      <Typography>{t(`confirm.secondaryText`, { email })}</Typography>
+      <Typography>
+        {email} {t(`confirm.secondaryText`)}
+      </Typography>
     </Box>
   );
 };

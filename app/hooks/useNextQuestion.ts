@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import usePersonStore from "../stores/person";
 import { useQuestionsStore } from "../stores/questions";
 
 const useNextQuestion = () => {
@@ -7,10 +8,14 @@ const useNextQuestion = () => {
   const nextQuestion = useQuestionsStore(s => s.nextQuestion);
   const questionsCount = useQuestionsStore(s => s.questions.length);
   const currentIndex = useQuestionsStore(s => s.currentIndex);
+  const setCompleteForm = usePersonStore(s => s.setCompleteForm);
 
   const onNextQuestion = useCallback(() => {
     if (questionsCount > currentIndex + 1) nextQuestion();
-    else router.push(`${router.asPath}/send`);
+    else {
+      setCompleteForm(true);
+      router.push(`${router.asPath}/send`);
+    }
   }, [questionsCount, currentIndex]);
 
   return onNextQuestion;
