@@ -32,6 +32,7 @@ Possible types:
 - `Triage`: List of items to sort
 - `Champ text`: Text to enter
 - `Bouton`: Call to action (not a question)
+- `Iframe`: URL for an iframe integration
 
 ### Locales on Notion
 

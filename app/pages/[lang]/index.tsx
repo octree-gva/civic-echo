@@ -13,7 +13,7 @@ const QuestionsPage: NextPage<Props> = (props: Props) => {
       display="flex"
       flexDirection="column"
       minHeight="100vh"
-      sx={{ bgcolor: { xl: "secondary.main" } }}
+      sx={{ bgcolor: { md: "secondary.light" } }}
     >
       <Topbar />
       <Box

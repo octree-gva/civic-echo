@@ -6,6 +6,7 @@ import Text from "./Text";
 import Button from "./Button";
 import SortListCompo from "./SortList";
 import useNextQuestion from "../../hooks/useNextQuestion";
+import Iframe from "./Iframe";
 
 const SortList = dynamic(() => import("./SortList").then(mod => mod.default), {
   ssr: false,
@@ -17,6 +18,7 @@ const TYPES = {
   YES_NO: "Swipe",
   TEXT: "Champ texte",
   BUTTON: "Bouton",
+  IFRAME: "Iframe",
 };
 
 interface Props {
@@ -47,6 +49,8 @@ const Responses = (props: Props) => {
       return <Text question={question} onRespond={onRespond} />;
     case TYPES.BUTTON:
       return <Button question={question} />;
+    case TYPES.IFRAME:
+      return <Iframe question={question} />;
     default:
       return null;
   }

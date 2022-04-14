@@ -32,7 +32,7 @@ const Bottombar = (props: Props) => {
         <Box
           textAlign="center"
           pb={2}
-          sx={{ display: { xl: "block", xs: "none" } }}
+          sx={{ display: { md: "block", xs: "none" } }}
         >
           <Typography variant="caption">{t`credentials`}</Typography>
         </Box>

@@ -11,7 +11,7 @@ const SendPage: NextPage<Props> = (props: Props) => {
     <Box
       display="flex"
       flexDirection="column"
-      sx={{ bgcolor: { xl: "secondary.main" } }}
+      sx={{ bgcolor: { md: "secondary.light" } }}
       minHeight="100vh"
     >
       <Topbar />

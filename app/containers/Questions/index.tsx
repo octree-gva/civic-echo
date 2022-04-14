@@ -12,7 +12,10 @@ const Questions = (props: Props) => {
   if (!currentQuestion) return null;
 
   return (
-    <Box maxWidth="40rem" sx={{ bgcolor: "secondary.light" }}>
+    <Box
+      maxWidth="40rem"
+      sx={{ bgcolor: "common.white", borderRadius: "24px" }}
+    >
       <Question question={currentQuestion} />
     </Box>
   );

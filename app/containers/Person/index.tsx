@@ -15,7 +15,10 @@ const Person = (props: Props) => {
   const currentViewIndex = usePersonStore(s => s.currentViewIndex);
   const View = VIEWS[currentViewIndex];
   return (
-    <Box maxWidth="40rem" sx={{ bgcolor: "secondary.light" }}>
+    <Box
+      maxWidth="40rem"
+      sx={{ bgcolor: "common.white", borderRadius: "24px" }}
+    >
       <View />
     </Box>
   );
