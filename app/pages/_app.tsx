@@ -29,7 +29,7 @@ const MyApp = (props: MyAppProps) => {
     <Provider createStore={() => store}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>Enquête - Demain, c'est aujourd'hui</title>
+          <title>Enquête - Demain, c&apos;est aujourd&apos;hui</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>

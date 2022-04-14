@@ -25,7 +25,7 @@ const PersonalPage: NextPage<Props> = (props: Props) => {
         else return true;
       }),
     []
-  );
+  ); // eslint-disable-line react-hooks/exhaustive-deps
   const CurrentStep = Steps[stepIndex];
 
   const onNextStep = () => {
