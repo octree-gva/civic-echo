@@ -6,19 +6,16 @@ type Payload = {
   responses: FormResponse[];
   person: Person;
   lang: string;
-  completeForm: boolean;
   src: string;
 };
 
 export const sendResponse = async () => {
   const { lang = "nc" } = questionStore?.getState() || {};
   const { responses } = useResponsesStore.getState();
-  const person = usePersonStore.getState().getPerson();
-  const completeForm = usePersonStore.getState().completeForm;
+  const person = usePersonStore.getState().person;
   const src = getSource();
 
-  if (responses?.length > 0)
-    return sendApi({ responses, person, lang, completeForm, src });
+  if (responses?.length > 0) return sendApi({ responses, person, lang, src });
 };
 
 const getSource = () => {

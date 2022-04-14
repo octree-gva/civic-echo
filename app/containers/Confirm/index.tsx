@@ -3,9 +3,7 @@ import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
 
-interface Props {}
-
-const Confirm = (props: Props) => {
+const Confirm = () => {
   const { t } = useTranslation();
   const email = usePersonStore(s => s.person.email);
 

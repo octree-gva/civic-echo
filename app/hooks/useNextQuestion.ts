@@ -8,13 +8,17 @@ const useNextQuestion = () => {
   const nextQuestion = useQuestionsStore(s => s.nextQuestion);
   const questionsCount = useQuestionsStore(s => s.questions.length);
   const currentIndex = useQuestionsStore(s => s.currentIndex);
-  const setCompleteForm = usePersonStore(s => s.setCompleteForm);
+  const completeProfile = usePersonStore(
+    s => !!s.person.email && !!s.person.npa
+  );
+  const updatePerson = usePersonStore(s => s.updatePerson);
 
   const onNextQuestion = useCallback(() => {
     if (questionsCount > currentIndex + 1) nextQuestion();
     else {
-      setCompleteForm(true);
-      router.push(`${router.query.lang}/send${window.location.search}`);
+      updatePerson({ completeForm: true });
+      const route = completeProfile ? "send" : "personal";
+      router.push(`/${router.query.lang}/${route}${window.location.search}`);
     }
   }, [questionsCount, currentIndex]);
 

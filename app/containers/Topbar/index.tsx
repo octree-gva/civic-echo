@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Share from "./Share";
-import { logoUrl } from "../../config/globale.json";
+import { logoUrl } from "../../config";
 
 interface Props {}
 

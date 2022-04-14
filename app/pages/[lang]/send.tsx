@@ -1,12 +1,18 @@
 import type { NextPage } from "next";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Topbar from "../../containers/Topbar";
 import * as pageUtils from "../../lib/pageUtils";
-import Person from "../../containers/Person";
+import Confirm from "../../containers/Confirm";
+import { sendResponse } from "../../lib/sendResponse";
 
 interface Props {}
 
-const SendPage: NextPage<Props> = (props: Props) => {
+const ConfirmPage: NextPage<Props> = (props: Props) => {
+  useEffect(() => {
+    sendResponse().catch(error => console.error(error));
+  }, []);
+
   return (
     <Box
       display="flex"
@@ -21,7 +27,7 @@ const SendPage: NextPage<Props> = (props: Props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Person />
+        <Confirm />
       </Box>
     </Box>
   );
@@ -30,4 +36,4 @@ const SendPage: NextPage<Props> = (props: Props) => {
 export const getStaticProps = pageUtils.getStaticProps;
 export const getStaticPaths = pageUtils.getStaticPaths;
 
-export default SendPage;
+export default ConfirmPage;

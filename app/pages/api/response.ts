@@ -17,22 +17,21 @@ type DataResponse = {
 type ResponseContext = {
   datetime: string;
   lang: string;
-  completeForm?: boolean;
   source: string;
+  completeForm: boolean;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const {
-      person,
-      responses,
-      completeForm,
-      lang,
-      src = "direct",
-    } = req.body || {};
+    const { person, responses, lang, src = "direct" } = req.body || {};
     const datetime = DateTime.now().toISO();
     const source = AUTHORIZED_SOURCE.includes(src) ? src : "other";
-    const context = { datetime, lang, completeForm, source };
+    const context = {
+      datetime,
+      lang,
+      source,
+      completeForm: person.completeForm,
+    };
     const response: DataResponse & ResponseContext = {
       responses: formatResponses(responses),
       ...context,
@@ -68,22 +67,17 @@ const insertPerson = async (person: Person, context: ResponseContext) => {
   if (!person?.email) return null;
 
   const properties = {
-    ["Nom"]: {
-      title: [
+    ["NPA"]: {
+      rich_text: [
         {
           text: {
-            content: person.name,
+            content: person.npa,
           },
         },
       ],
     },
     ["Email"]: {
       email: person.email,
-    },
-    ["Date de naissance"]: {
-      date: {
-        start: person.birthdate,
-      },
     },
     ["Répondu le"]: {
       date: {

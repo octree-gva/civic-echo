@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -8,25 +8,30 @@ import Checkbox from "@mui/material/Checkbox";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
 
-interface Props {}
+interface Props {
+  onNext: () => void;
+}
 
 const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const Email = (props: Props) => {
+  const { onNext } = props;
   const { t } = useTranslation();
   const updatePerson = usePersonStore(s => s.updatePerson);
-  const email = usePersonStore(s => s.person.email);
+  const storeEmail = usePersonStore(s => s.person.email);
   const acceptNotif = usePersonStore(s => s.person.acceptNotif);
-  const nextView = usePersonStore(s => s.nextView);
+  const [email, setEmail] = useState<string>(storeEmail || "");
   const isEmailValid = useMemo(() => email?.match(EMAIL_REGEX), [email]);
 
-  const onTextChange = (event: any) => {
-    updatePerson({ email: event.target.value });
-  };
+  const onTextChange = (event: any) => setEmail(event.target.value);
 
-  const onCheckboxChange = (event: any) => {
+  const onCheckboxChange = (event: any) =>
     updatePerson({ acceptNotif: event.target.checked });
+
+  const onFinish = () => {
+    updatePerson({ email });
+    onNext();
   };
 
   return (
@@ -46,14 +51,20 @@ const Email = (props: Props) => {
       />
       <FormControlLabel
         sx={{ my: 4 }}
-        control={<Checkbox checked={acceptNotif} onChange={onCheckboxChange} />}
+        control={
+          <Checkbox
+            checked={acceptNotif}
+            onChange={onCheckboxChange}
+            disabled={!email}
+          />
+        }
         label={t`email.checkbox`}
         componentsProps={{ typography: { variant: "body2" } }}
       />
       <Button
         variant="contained"
-        onClick={nextView}
-        disabled={!isEmailValid}
+        onClick={onFinish}
+        disabled={!!email && !isEmailValid}
       >{t`generic.next`}</Button>
     </Box>
   );

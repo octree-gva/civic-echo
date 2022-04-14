@@ -30,8 +30,8 @@ type KeyValueResponse = {
 };
 
 type Person = {
-  name?: string;
+  npa?: string;
   email?: string;
-  birthdate?: DateTime;
+  completeForm?: boolean;
   acceptNotif?: boolean;
 };
