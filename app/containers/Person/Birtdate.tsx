@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Button from "@mui/material/Button";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import { DateTime } from "luxon";
 import { useTranslation } from "react-i18next";
@@ -21,7 +23,10 @@ const Birthdate = (props: Props) => {
   return (
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`birthdate.title`}</Typography>
-      <Typography sx={{ py: 4 }}>{t`birthdate.description`}</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ pt: 2, pb: 4 }}
+      >{t`birthdate.description`}</Typography>
       <MobileDatePicker
         label={t`birthdate.label`}
         inputFormat="MM/dd/yyyy"
@@ -32,6 +37,13 @@ const Birthdate = (props: Props) => {
         cancelText={""}
         showToolbar={false}
       />
+      <Button
+        size="small"
+        color="secondary"
+        sx={{ mt: 4 }}
+        onClick={nextView}
+        endIcon={<ChevronRightIcon />}
+      >{t`generic.skip`}</Button>
     </Box>
   );
 };

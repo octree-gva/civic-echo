@@ -23,6 +23,7 @@ const Text = (props: Props) => {
     <Box>
       <TextField
         fullWidth
+        variant="standard"
         value={text}
         onChange={event => setText(event.target.value)}
         placeholder={`${question.responses}`}

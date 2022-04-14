@@ -6,6 +6,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import { useTranslation } from "react-i18next";
+import ShareIcon from "@mui/icons-material/Share";
 
 const Share = () => {
   const { t } = useTranslation();
@@ -24,7 +25,12 @@ const Share = () => {
 
   return (
     <>
-      <Button onClick={onShare}>{t`generic.share`}</Button>
+      <Button
+        onClick={onShare}
+        size="small"
+        color="secondary"
+        endIcon={<ShareIcon />}
+      >{t`generic.share`}</Button>
       <Dialog open={showModal} keepMounted onClose={toggleModal}>
         <DialogContent>
           <Typography sx={{ mb: 2 }}>{t`share.shareLink`}</Typography>

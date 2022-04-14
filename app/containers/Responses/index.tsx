@@ -1,10 +1,15 @@
+import dynamic from "next/dynamic";
 import useResponsesStore from "../../stores/responses";
 import ListChoice from "./ListChoice";
 import YesNo from "./YesNo";
 import Text from "./Text";
 import Button from "./Button";
-import SortList from "./SortList";
+import SortListCompo from "./SortList";
 import useNextQuestion from "../../hooks/useNextQuestion";
+
+const SortList = dynamic(() => import("./SortList").then(mod => mod.default), {
+  ssr: false,
+}) as typeof SortListCompo;
 
 const TYPES = {
   LIST_CHOICE: "Choix unique",

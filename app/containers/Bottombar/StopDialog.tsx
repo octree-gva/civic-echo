@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -37,10 +36,11 @@ const StopDialog = (props: Props) => {
     <Dialog open={open} keepMounted onClose={toggle}>
       {!sent && (
         <DialogContent sx={{ textAlign: "center" }}>
-          <DialogContentText>
-            <Typography variant="h6">{t`stop.title`}</Typography>
-            <Typography sx={{ mt: 2 }}>{t`stop.notice`}</Typography>
-          </DialogContentText>
+          <Typography variant="subtitle1">{t`stop.title`}</Typography>
+          <Typography
+            variant="body2"
+            sx={{ mt: 2 }}
+          >{t`stop.notice`}</Typography>
           <Box mt={4} display="flex" justifyContent="space-between">
             <Button
               variant="outlined"
@@ -55,10 +55,12 @@ const StopDialog = (props: Props) => {
       )}
       {sent && (
         <DialogContent sx={{ textAlign: "center" }}>
-          <DialogContentText>
-            <Typography variant="h6">{t`stop.thanks`}</Typography>
-            <Typography sx={{ mt: 2 }}>{t`stop.content`}</Typography>
-          </DialogContentText>
+          <Typography variant="subtitle1">{t`stop.thanks`}</Typography>
+          <Typography
+            variant="body2"
+            sx={{ my: 2 }}
+          >{t`stop.content`}</Typography>
+          <Typography variant="caption">{t`credentials`}</Typography>
           <Box mt={4}>
             <Button
               variant="outlined"

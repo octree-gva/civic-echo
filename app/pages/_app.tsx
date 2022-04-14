@@ -10,6 +10,7 @@ import theme from "../theme";
 import createEmotionCache from "../lib/createEmotionCache";
 import { useHydrate, Provider } from "../stores/questions";
 import useI18n from "../hooks/useI18n";
+import "../styles/globals.css";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

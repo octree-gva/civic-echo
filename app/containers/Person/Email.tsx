@@ -32,7 +32,10 @@ const Email = (props: Props) => {
   return (
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`email.title`}</Typography>
-      <Typography sx={{ py: 4 }}>{t`email.description`}</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ pt: 2, pb: 4 }}
+      >{t`email.description`}</Typography>
       <TextField
         fullWidth
         autoFocus

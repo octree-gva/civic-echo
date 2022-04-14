@@ -1,24 +1,10 @@
-// @ts-nocheck
 import { useState } from "react";
-import { DropResult, DragDropContext as DDCT } from "react-beautiful-dnd";
+import { DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material";
-import dynamic from "next/dynamic";
 import { useTranslation } from "react-i18next";
-
-const DragDropContext = dynamic(
-  () => import("react-beautiful-dnd").then(mod => mod.DragDropContext),
-  { ssr: false }
-) as Promise<DDCT>;
-const Droppable = dynamic(
-  () => import("react-beautiful-dnd").then(mod => mod.Droppable),
-  { ssr: false }
-);
-const Draggable = dynamic(
-  () => import("react-beautiful-dnd").then(mod => mod.Draggable),
-  { ssr: false }
-);
 
 interface Props {
   question: FormQuestion;
@@ -59,7 +45,11 @@ const SortList = (props: Props) => {
 
   return (
     <Box width="100%">
-      <DragDropContext onDragEnd={handleOnDragEnd}>
+      <DragDropContext
+        onDragEnd={handleOnDragEnd}
+        onDragStart={() => console.log("START")}
+        onBeforeCapture={() => console.log("CAPTURE")}
+      >
         <Droppable droppableId="list">
           {provided => (
             <List
@@ -76,7 +66,6 @@ const SortList = (props: Props) => {
         </Droppable>
       </DragDropContext>
       <Button
-        fullWidth
         onClick={onNext}
         variant="contained"
         sx={{ mt: 4 }}
@@ -94,8 +83,9 @@ const Item = ({
   item: KeyValueResponse;
   isActive?: boolean;
 }) => {
+  if (!item.key) return null;
   return (
-    <Draggable key={item.key} draggableId={item.key} index={index}>
+    <Draggable draggableId={item.key} index={index} key={`key-${item.key}`}>
       {provided => (
         <ListItem
           ref={provided.innerRef}

@@ -4,17 +4,19 @@ import Questions from "../../containers/Questions";
 import Topbar from "../../containers/Topbar";
 import Bottombar from "../../containers/Bottombar";
 import * as pageUtils from "../../lib/pageUtils";
-import useNextQuestion from "../../hooks/useNextQuestion";
 
 interface Props {}
 
 const QuestionsPage: NextPage<Props> = (props: Props) => {
-  const nextQuestion = useNextQuestion();
-
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
-      <Topbar onNext={nextQuestion} />
-      <Box flexGrow={1}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
+      sx={{ bgcolor: { xl: "secondary.main" } }}
+    >
+      <Topbar />
+      <Box flexGrow={1} display="flex" justifyContent="center">
         <Questions />
       </Box>
       <Bottombar />

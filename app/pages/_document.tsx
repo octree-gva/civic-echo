@@ -13,9 +13,15 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin=""
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
@@ -65,6 +71,7 @@ MyDocument.getInitialProps = async ctx => {
     originalRenderPage({
       enhanceApp: (App: any) =>
         function EnhanceApp(props) {
+          resetServerContext();
           return <App emotionCache={cache} {...props} />;
         },
     });
@@ -81,8 +88,6 @@ MyDocument.getInitialProps = async ctx => {
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
-
-  resetServerContext();
 
   return {
     ...initialProps,

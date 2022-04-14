@@ -11,9 +11,14 @@ const Confirm = (props: Props) => {
 
   return (
     <Box p={2} textAlign="center">
-      <Typography variant="h4">{t`confirm.title`}</Typography>
-      <Typography>Image</Typography>
-      <Typography color="primary">{t`confirm.primaryText`}</Typography>
+      <Typography variant="h5">{t`confirm.title`}</Typography>
+      <Box height="10rem" my={4}>
+        <img src="/confirm.svg" width="auto" height="100%" />
+      </Box>
+      <Typography
+        color="primary"
+        sx={{ pb: 2 }}
+      >{t`confirm.primaryText`}</Typography>
       <Typography>
         {email} {t(`confirm.secondaryText`)}
       </Typography>

@@ -29,7 +29,10 @@ const Name = (props: Props) => {
   return (
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`name.title`}</Typography>
-      <Typography sx={{ py: 4 }}>{t`name.description`}</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ pt: 2, pb: 4 }}
+      >{t`name.description`}</Typography>
       <TextField
         fullWidth
         autoFocus

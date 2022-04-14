@@ -12,7 +12,7 @@ const Questions = (props: Props) => {
   if (!currentQuestion) return null;
 
   return (
-    <Box>
+    <Box maxWidth="40rem" sx={{ bgcolor: "secondary.light" }}>
       <Question question={currentQuestion} />
     </Box>
   );

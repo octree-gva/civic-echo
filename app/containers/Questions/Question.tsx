@@ -1,6 +1,10 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useTranslation } from "react-i18next";
 import Responses from "../Responses";
+import useNextQuestion from "../../hooks/useNextQuestion";
 
 interface Props {
   question: FormQuestion;
@@ -8,6 +12,8 @@ interface Props {
 
 const Question = (props: Props) => {
   const { question } = props;
+  const { t } = useTranslation();
+  const nextQuestion = useNextQuestion();
 
   if (!question) return null;
 
@@ -15,11 +21,20 @@ const Question = (props: Props) => {
     <Box p={2} textAlign="center">
       <Typography variant="h5">{question.title}</Typography>
       {question.description && (
-        <Typography sx={{ py: 4 }}>{question.description}</Typography>
+        <Typography variant="subtitle1" sx={{ pt: 2 }}>
+          {question.description}
+        </Typography>
       )}
       <Box mt={4}>
         <Responses question={question} />
       </Box>
+      <Button
+        size="small"
+        color="secondary"
+        sx={{ mt: 4 }}
+        onClick={nextQuestion}
+        endIcon={<ChevronRightIcon />}
+      >{t`generic.skip`}</Button>
     </Box>
   );
 };
