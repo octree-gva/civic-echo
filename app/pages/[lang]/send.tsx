@@ -8,9 +8,21 @@ interface Props {}
 
 const SendPage: NextPage<Props> = (props: Props) => {
   return (
-    <Box>
+    <Box
+      display="flex"
+      flexDirection="column"
+      sx={{ bgcolor: { xl: "secondary.main" } }}
+      minHeight="100vh"
+    >
       <Topbar />
-      <Person />
+      <Box
+        flexGrow={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Person />
+      </Box>
     </Box>
   );
 };

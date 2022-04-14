@@ -16,7 +16,12 @@ const QuestionsPage: NextPage<Props> = (props: Props) => {
       sx={{ bgcolor: { xl: "secondary.main" } }}
     >
       <Topbar />
-      <Box flexGrow={1} display="flex" justifyContent="center">
+      <Box
+        flexGrow={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Questions />
       </Box>
       <Bottombar />
