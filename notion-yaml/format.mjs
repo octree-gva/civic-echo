@@ -1,7 +1,13 @@
 export const formatResponses = responses => {
   if (!responses) return null;
+  const responsesArray = responses.split(/, ?/);
 
-  return responses.split(/, ?/);
+  if (responsesArray.length > 1)
+    return responsesArray.map(response => ({
+      key: response,
+      value: response,
+    }));
+  else return responsesArray?.[0];
 };
 
 export const removeEmptyKeys = (obj = {}) =>

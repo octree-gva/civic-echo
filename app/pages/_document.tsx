@@ -1,6 +1,7 @@
 import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
+import { resetServerContext } from "react-beautiful-dnd";
 import theme from "../theme";
 import createEmotionCache from "../lib/createEmotionCache";
 
@@ -80,6 +81,8 @@ MyDocument.getInitialProps = async ctx => {
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
+
+  resetServerContext();
 
   return {
     ...initialProps,

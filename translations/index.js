@@ -17,7 +17,7 @@ const targetLang = process.argv[3];
 if (!targetLang)
   throw new Error(`No lang provided as second argument (example: 'en')`);
 
-const IGNORED_FIELDS = ["id", "type", "link", "lang", "category"];
+const IGNORED_FIELDS = ["id", "key", "type", "link", "lang", "category"];
 const targetPath = `../app/langs/${targetLang}.yaml`;
 const free = true;
 

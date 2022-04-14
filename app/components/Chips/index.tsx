@@ -4,23 +4,23 @@ import { styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
 interface Props {
-  options: string[];
-  onChange: (chip: string, index: number) => void;
+  options: KeyValueResponse[];
+  onChange: (clickedResponse?: KeyValueResponse) => void;
 }
 
 const Chips = (props: Props) => {
   const { options, onChange } = props;
-  const [selectedChip, setSelectedChip] = useState<string>("");
+  const [selectedKey, setSelectedKey] = useState("");
 
   useEffect(() => {
-    setSelectedChip("");
+    setSelectedKey("");
   }, [options]);
 
-  const onClickChip = (clickedChip: string) => {
-    setSelectedChip(clickedChip);
+  const onClickChip = (clickedKey: string) => {
+    setSelectedKey(clickedKey);
 
-    const chipIndex = options.findIndex(option => option === clickedChip);
-    onChange(clickedChip, chipIndex);
+    const clickedResponse = options.find(option => option.key === clickedKey);
+    onChange(clickedResponse);
   };
 
   return (
@@ -28,13 +28,13 @@ const Chips = (props: Props) => {
       {options?.map((option, index) => (
         <Chip
           key={index}
-          onClick={() => onClickChip(option)}
-          isSelected={selectedChip === option}
+          onClick={() => onClickChip(option.key)}
+          isSelected={selectedKey === option.key}
         >
-          {selectedChip === option && (
+          {selectedKey === option.key && (
             <CheckIcon sx={{ mr: 2, fontSize: "2rem" }} />
           )}
-          {option}
+          {option.value}
         </Chip>
       ))}
     </Root>
