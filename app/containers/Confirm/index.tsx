@@ -1,27 +1,18 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import usePersonStore from "../../stores/person";
+import Voucher from "./Voucher";
+import Simple from "./Simple";
 
 const Confirm = () => {
-  const { t } = useTranslation();
-  const email = usePersonStore(s => s.person.email);
+  const person = usePersonStore(s => s.person);
 
-  return (
-    <Box p={2} textAlign="center">
-      <Typography variant="h5">{t`confirm.title`}</Typography>
-      <Box height="10rem" my={4}>
-        <img src="/confirm.svg" width="auto" height="100%" />
-      </Box>
-      <Typography
-        color="primary"
-        sx={{ pb: 2 }}
-      >{t`confirm.primaryText`}</Typography>
-      <Typography>
-        {email} {t(`confirm.secondaryText`)}
-      </Typography>
-    </Box>
+  const showVoucher = useMemo(
+    () => person.email && person.npa && person.completeForm,
+    [person]
   );
+
+  if (showVoucher) return <Voucher />;
+  else return <Simple />;
 };
 
 export default Confirm;
