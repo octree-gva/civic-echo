@@ -14,7 +14,7 @@ const theme = createTheme({
     secondary: {
       light: "#f6f5f2",
       main: "#e1e0dd",
-      dark: "#afaeab",
+      dark: "#818181",
     },
   },
   components: {
@@ -24,7 +24,7 @@ const theme = createTheme({
           borderRadius: "24px",
         },
         textSecondary: {
-          color: "#afaeab",
+          color: "#818181",
           "&:hover": {
             backgroundColor: "rgba(0,0,0,0.05)",
           },

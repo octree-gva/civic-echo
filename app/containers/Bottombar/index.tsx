@@ -1,16 +1,27 @@
 import { useReducer } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import StopDialog from "./StopDialog";
 import SelectLang from "./SelectLang";
+import Credentials from "./Credentials";
 
 interface Props {}
 
 const Bottombar = (props: Props) => {
   const { t } = useTranslation();
   const [openDialog, toggleDialog] = useReducer(i => !i, false);
+
+  const mockPartners = [
+    {
+      name: "Genêve en transition",
+      url: "https://www.ge.ch/teaser/geneve-transition",
+    },
+    {
+      name: "Grand Genêve en transition",
+      url: "https://www.grand-geneve-en-transition.org/",
+    },
+  ];
 
   return (
     <>
@@ -20,7 +31,7 @@ const Bottombar = (props: Props) => {
           display="flex"
           justifyContent="space-between"
           px={2}
-          pb={1}
+          py={1}
         >
           <SelectLang />
           <Button
@@ -34,7 +45,7 @@ const Bottombar = (props: Props) => {
           pb={2}
           sx={{ display: { md: "block", xs: "none" } }}
         >
-          <Typography variant="caption">{t`credentials`}</Typography>
+          <Credentials partners={mockPartners} />
         </Box>
       </Box>
       <StopDialog open={openDialog} toggle={toggleDialog} />
