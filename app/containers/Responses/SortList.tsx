@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Box from "@mui/material/Box";
@@ -17,6 +17,14 @@ const SortList = (props: Props) => {
   const [items, setItems] = useState<KeyValueResponse[]>(
     question.responses as KeyValueResponse[]
   );
+
+  useEffect(() => {
+    setItems(
+      items.map(({ key }) =>
+        question.responses.find((response) => response.key === key)
+      )
+    );
+  }, [question.responses]);
 
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -40,7 +48,7 @@ const SortList = (props: Props) => {
   };
 
   const onNext = () => {
-    onRespond(items.map(item => item.key));
+    onRespond(items.map((item) => item.key));
   };
 
   return (
@@ -51,7 +59,7 @@ const SortList = (props: Props) => {
         onBeforeCapture={() => console.log("CAPTURE")}
       >
         <Droppable droppableId="list">
-          {provided => (
+          {(provided) => (
             <List
               {...provided.droppableProps}
               ref={provided.innerRef}
@@ -86,7 +94,7 @@ const Item = ({
   if (!item.key) return null;
   return (
     <Draggable draggableId={item.key} index={index} key={`key-${item.key}`}>
-      {provided => (
+      {(provided) => (
         <ListItem
           ref={provided.innerRef}
           title={item.value}

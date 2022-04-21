@@ -24,7 +24,7 @@ const SelectLang = (props: Props) => {
   return (
     <>
       <Button
-        color="secondary"
+        color="primary"
         size="small"
         onClick={toggleModal}
         endIcon={<TranslateIcon />}

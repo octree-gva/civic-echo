@@ -11,16 +11,28 @@ import ShareIcon from "@mui/icons-material/Share";
 const Share = () => {
   const { t } = useTranslation();
   const url = getUrl();
-  const [showModal, toggleModal] = useReducer(i => !i, false);
+  const [showModal, toggleModal] = useReducer((i) => !i, false);
 
   const onShare = async () => {
-    if (navigator?.share)
-      await navigator.share({ title: t`share.message`, url });
-    else toggleModal();
+    if (navigator?.share) {
+      try {
+        await navigator.share({
+          title: t`share.message`,
+          url,
+        });
+      } catch (err) {
+        if (!err.toString().includes('AbortError')) {
+          throw(err)
+        } else {
+          toggleModal()
+        }
+      }
+    } else toggleModal();
   };
 
   const onCopy = () => {
     navigator?.clipboard?.writeText(url);
+
   };
 
   return (
@@ -28,7 +40,7 @@ const Share = () => {
       <Button
         onClick={onShare}
         size="small"
-        color="secondary"
+        color="primary"
         endIcon={<ShareIcon />}
       >{t`generic.share`}</Button>
       <Dialog open={showModal} keepMounted onClose={toggleModal}>
