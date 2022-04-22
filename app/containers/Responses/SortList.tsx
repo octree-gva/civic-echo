@@ -20,9 +20,11 @@ const SortList = (props: Props) => {
 
   useEffect(() => {
     setItems(
-      items.map(({ key }) =>
-        question.responses.find((response) => response.key === key)
-      )
+      items.map(item => {
+        const responses: KeyValueResponse[] =
+          (question.responses as KeyValueResponse[]) || [];
+        return responses.find(response => response.key === item.key) || item;
+      })
     );
   }, [question.responses]);
 
@@ -48,18 +50,14 @@ const SortList = (props: Props) => {
   };
 
   const onNext = () => {
-    onRespond(items.map((item) => item.key));
+    onRespond(items.map(item => item.key));
   };
 
   return (
     <Box width="100%">
-      <DragDropContext
-        onDragEnd={handleOnDragEnd}
-        onDragStart={() => console.log("START")}
-        onBeforeCapture={() => console.log("CAPTURE")}
-      >
+      <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="list">
-          {(provided) => (
+          {provided => (
             <List
               {...provided.droppableProps}
               ref={provided.innerRef}
@@ -94,7 +92,7 @@ const Item = ({
   if (!item.key) return null;
   return (
     <Draggable draggableId={item.key} index={index} key={`key-${item.key}`}>
-      {(provided) => (
+      {provided => (
         <ListItem
           ref={provided.innerRef}
           title={item.value}

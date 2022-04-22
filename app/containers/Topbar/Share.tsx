@@ -11,7 +11,7 @@ import ShareIcon from "@mui/icons-material/Share";
 const Share = () => {
   const { t } = useTranslation();
   const url = getUrl();
-  const [showModal, toggleModal] = useReducer((i) => !i, false);
+  const [showModal, toggleModal] = useReducer(i => !i, false);
 
   const onShare = async () => {
     if (navigator?.share) {
@@ -20,11 +20,11 @@ const Share = () => {
           title: t`share.message`,
           url,
         });
-      } catch (err) {
-        if (!err.toString().includes('AbortError')) {
-          throw(err)
+      } catch (err: any) {
+        if (!err.toString().includes("AbortError")) {
+          throw err;
         } else {
-          toggleModal()
+          toggleModal();
         }
       }
     } else toggleModal();
@@ -32,7 +32,6 @@ const Share = () => {
 
   const onCopy = () => {
     navigator?.clipboard?.writeText(url);
-
   };
 
   return (
