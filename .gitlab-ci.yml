@@ -4,14 +4,23 @@ include:
 
 Build:
   extends: .build
-  variables:
-    CI_PROJECT_DIR: app
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: "$CI_COMMIT_TAG =~ /v.*$/"
 
 Deploy Test:
   extends: .deployHidora
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
-    - if: "$CI_COMMIT_TAG =~ /v.*$/"
+    - if: "$CI_COMMIT_TAG != /v.*$/"
   environment:
     name: Test
     url: "https://survey-ggt.hidora.com"
+
+Deploy Prod:
+  extends: .deployHidora
+  rules:
+    - if: "$CI_COMMIT_TAG =~ /v.*$/"
+  environment:
+    name: Prod
+    url: "https://"
