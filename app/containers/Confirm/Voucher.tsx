@@ -11,14 +11,14 @@ const Voucher = () => {
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`confirm.title`}</Typography>
       <Box height="10rem" my={4}>
-        <img src="/confirm.svg" width="auto" height="100%" />
+        <img src="/voucher.svg" width="auto" height="100%" />
       </Box>
       <Typography
         color="primary"
         sx={{ pb: 2 }}
-      >{t`confirm.primaryText`}</Typography>
+      >{t`confirm.voucher.primaryText`}</Typography>
       <Typography>
-        {email} {t(`confirm.secondaryText`)}
+        {email} {t(`confirm.voucher.secondaryText`)}
       </Typography>
     </Box>
   );
