@@ -1,14 +1,11 @@
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
-import PartnerLink, { Partner } from "./PartnerLink";
+import { partnersConfig } from "../../config";
+import PartnerLink from "./PartnerLink";
 
-interface Props {
-  partners: Array<Partner>;
-}
-
-const Credentials = (props: Props) => {
+const Credentials = () => {
   const { t } = useTranslation();
-  const partners = [...props.partners];
+  const partners = [...partnersConfig];
   if (partners.length > 0) {
     const firstPartner = partners.length > 0 && partners.shift();
     const lastPartner = partners.length > 0 && partners.pop();

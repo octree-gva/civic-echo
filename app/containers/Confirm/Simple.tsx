@@ -6,7 +6,7 @@ const Simple = () => {
   const { t } = useTranslation();
 
   return (
-    <Box p={2} textAlign="center">
+    <Box p={2} textAlign="center" maxWidth="38em">
       <Typography variant="h5">{t`confirm.title`}</Typography>
       <Box height="10rem" my={4}>
         <img src="/confirm.svg" width="auto" height="100%" />

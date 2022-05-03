@@ -12,17 +12,6 @@ const Bottombar = (props: Props) => {
   const { t } = useTranslation();
   const [openDialog, toggleDialog] = useReducer(i => !i, false);
 
-  const mockPartners = [
-    {
-      name: "Genêve en transition",
-      url: "https://www.ge.ch/teaser/geneve-transition",
-    },
-    {
-      name: "Grand Genêve en transition",
-      url: "https://www.grand-geneve-en-transition.org/",
-    },
-  ];
-
   return (
     <>
       <Box>
@@ -45,7 +34,7 @@ const Bottombar = (props: Props) => {
           pb={2}
           sx={{ display: { md: "block", xs: "none" } }}
         >
-          <Credentials partners={mockPartners} />
+          <Credentials />
         </Box>
       </Box>
       <StopDialog open={openDialog} toggle={toggleDialog} />
