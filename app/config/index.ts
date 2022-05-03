@@ -9,3 +9,14 @@ export const isClosed = false;
 
 // URL to survey results
 export const resultsUrl = "https://demaincestaujourdhui.online";
+
+export const partnersConfig = [
+    {
+      name: "Genève en transition",
+      url: "https://www.ge.ch/teaser/geneve-transition",
+    },
+    {
+      name: "Grand Genève en transition",
+      url: "https://www.grand-geneve-en-transition.org/",
+    },
+  ];

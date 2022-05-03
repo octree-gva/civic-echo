@@ -50,7 +50,7 @@ const Email = (props: Props) => {
         onChange={onTextChange}
       />
       <FormControlLabel
-        sx={{ my: 4 }}
+        sx={{ my: 4, textAlign: 'left' }}
         control={
           <Checkbox
             checked={acceptNotif}
