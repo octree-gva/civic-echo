@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
 
@@ -36,6 +37,15 @@ const Npa = (props: Props) => {
         sx={{ mb: 4 }}
       />
       <Button variant="contained" onClick={onNext}>{t`generic.next`}</Button>
+      <Box>
+        <Button
+          size="small"
+          color="secondary"
+          sx={{ mt: 4 }}
+          onClick={onNext}
+          endIcon={<ChevronRightIcon />}
+        >{t`generic.skip`}</Button>
+      </Box>
     </Box>
   );
 };

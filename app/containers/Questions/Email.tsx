@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Checkbox from "@mui/material/Checkbox";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
@@ -66,6 +67,15 @@ const Email = (props: Props) => {
         onClick={onFinish}
         disabled={!!email && !isEmailValid}
       >{t`generic.next`}</Button>
+      <Box>
+        <Button
+          size="small"
+          color="secondary"
+          sx={{ mt: 4 }}
+          onClick={onNext}
+          endIcon={<ChevronRightIcon />}
+        >{t`generic.skip`}</Button>
+      </Box>
     </Box>
   );
 };
