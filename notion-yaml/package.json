@@ -5,7 +5,7 @@
   "author": "Tim Izzo (octree.ch)",
   "license": "MIT",
   "scripts": {
-    "start": "node --experimental-top-level-await index.mjs"
+    "start": "node index.mjs"
   },
   "dependencies": {
     "@notionhq/client": "^1.0.4",

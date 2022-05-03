@@ -19,6 +19,8 @@ then
     fi
 
     node index ../notion-yaml/fr.yaml en
-    node index ../notion-yaml/fr.yaml de
+    node index ../notion-yaml/fr.yaml es
+    node index ../notion-yaml/fr.yaml pt
+    node index ../notion-yaml/fr.yaml it
     cd ..
 fi
