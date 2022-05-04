@@ -5,7 +5,16 @@ import * as Notion from "../../lib/notion";
 
 const { MONGO_URL = "", MONGO_DB = "survey", NOTION_DBID } = process.env;
 const COLLECTION_NAME = "responses";
-const AUTHORIZED_SOURCE = ["direct", "share", "iframe", "other"];
+const AUTHORIZED_SOURCE = [
+  "direct",
+  "share",
+  "iframe",
+  "other",
+  "qr",
+  "sqs",
+  "participer",
+  "social",
+];
 
 const mongoDB = new MongoClient(MONGO_URL);
 
