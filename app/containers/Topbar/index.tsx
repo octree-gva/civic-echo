@@ -1,12 +1,16 @@
 import Box from "@mui/material/Box";
-import Share from "./Share";
 import { useTheme } from "@mui/system";
+import Share from "./Share";
 import { logoUrl } from "../../config";
+import { useRouter } from "next/dist/client/router";
 
 interface Props {}
 
 const Topbar = (props: Props) => {
   const theme = useTheme();
+  const router = useRouter();
+  const { src } = router.query;
+  const hideLogo = src === "sqs";
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       <Box
@@ -14,14 +18,16 @@ const Topbar = (props: Props) => {
         maxWidth="60%"
         sx={{ [theme.breakpoints.up("sm")]: { pt: 5 } }}
       >
-        <a href={logoUrl}>
-          <img
-            src="/logo.svg"
-            alt="Demain c'est aujourd'hui"
-            width="80%"
-            height="auto"
-          />
-        </a>
+        {hideLogo || (
+          <a href={logoUrl}>
+            <img
+              src="/logo.svg"
+              alt="Demain c'est aujourd'hui"
+              width="80%"
+              height="auto"
+            />
+          </a>
+        )}
       </Box>
       <Box sx={{ [theme.breakpoints.up("sm")]: { pt: 5 } }}>
         <Share />
