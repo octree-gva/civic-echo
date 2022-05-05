@@ -21,7 +21,7 @@ const Question = (props: Props) => {
     <Box p={2} textAlign="center">
       <Typography variant="h5" sx={{px: 4}}>{question.title}</Typography>
       {question.description && (
-        <Typography variant="subtitle1" sx={{ pt: 2, px: 4 }}>
+        <Typography variant="body2" sx={{ pt: 2, px: 4 }}>
           {question.description}
         </Typography>
       )}
