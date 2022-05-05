@@ -24,7 +24,7 @@ const Npa = (props: Props) => {
     <Box p={2} textAlign="center">
       <Typography variant="h5">{t`npa.title`}</Typography>
       <Typography
-        variant="subtitle1"
+        variant="body2"
         sx={{ pt: 2, pb: 4 }}
       >{t`npa.description`}</Typography>
       <TextField

@@ -19,9 +19,9 @@ const Question = (props: Props) => {
 
   return (
     <Box p={2} textAlign="center">
-      <Typography variant="h5">{question.title}</Typography>
+      <Typography variant="h5" sx={{px: 4}}>{question.title}</Typography>
       {question.description && (
-        <Typography variant="subtitle1" sx={{ pt: 2 }}>
+        <Typography variant="body2" sx={{ pt: 2, px: 4 }}>
           {question.description}
         </Typography>
       )}
@@ -31,7 +31,7 @@ const Question = (props: Props) => {
       <Button
         size="small"
         color="secondary"
-        sx={{ mt: 4 }}
+        sx={{ mt: 4}}
         onClick={nextQuestion}
         endIcon={<ChevronRightIcon />}
       >{t`generic.skip`}</Button>
