@@ -3,9 +3,9 @@ This is a NodeJS script used to generate YAML questions file from Notion databas
 ## Install
 
 ```bash
-git clone <git url> ggt-survey
-cd ggt-survey/notion-yaml
-npm install
+git clone https://github.com/octree-gva/civic-echo.git civic-echo
+cd civic-echo/notion-yaml
+yarn
 ```
 
 ## Setup
@@ -67,7 +67,7 @@ DEFAULT_LANG=fr
 ## Run
 
 ```bash
-npm start
+yarn start
 ```
 
 If execution succeeds, a YAML file is created locally.

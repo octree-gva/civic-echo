@@ -3,9 +3,9 @@ This is a NodeJS script to translate YAML formated file with DeepL to arbitrary 
 ## Install
 
 ```bash
-git clone <git url> ggt-survey
-cd ggt-survey/translations
-npm install
+git clone https://github.com/octree-gva/civic-echo.git civic-echo
+cd civic-echo/translations
+yarn
 ```
 
 ## Setup

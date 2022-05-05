@@ -1,5 +1,5 @@
 // Link of the clickable logo
-export const logoUrl = "https://demaincestaujourdhui.online";
+export const logoUrl = "https://mywebsite.com";
 
 // Position of questions for personal data
 export const personalIndex = 36;
@@ -8,16 +8,16 @@ export const personalIndex = 36;
 export const isClosed = false;
 
 // URL to survey results
-export const resultsUrl =
-  "https://metabase-ggt.jcloud.ik-server.com/public/dashboard/593161a3-9757-490f-a481-c6908f6361b2";
+export const resultsUrl = "https://www.metabase.com/";
 
+// Partners URL injection
 export const partnersConfig = [
   {
-    name: "Genève en transition",
-    url: "https://www.ge.ch/teaser/geneve-transition",
+    name: "Partner A",
+    url: "https://partner-a.com",
   },
   {
-    name: "Grand Genève en transition",
-    url: "https://www.grand-geneve-en-transition.org/",
+    name: "Partner B",
+    url: "https://partner-b.com",
   },
 ];
