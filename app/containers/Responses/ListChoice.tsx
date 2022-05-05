@@ -10,7 +10,9 @@ const ListChoice = (props: Props) => {
   const { question, onRespond } = props;
 
   const onChange = (response?: KeyValueResponse) => {
-    if (response) onRespond(response.key);
+    if (response) {
+      setTimeout(() => onRespond(response.key), 400);
+    }
   };
 
   return (
