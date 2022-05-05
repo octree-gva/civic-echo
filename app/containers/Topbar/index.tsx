@@ -18,7 +18,7 @@ const Topbar = (props: Props) => {
           <img
             src="/logo.svg"
             alt="Demain c'est aujourd'hui"
-            width="100%"
+            width="80%"
             height="auto"
           />
         </a>
