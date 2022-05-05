@@ -1,10 +1,10 @@
 # Civic-echo
 
 Civic-echo is a light app used for dynamic survey generation based on YAML files.
-Coupled with DeepL, it could handle multiple languages easily.
+Coupled with DeepL, it can handle multiple languages easily.
 
-It was first developed for [demaincestaujourdhui.online](https://www.demaincestaujourdhui.online/),
-supported by [Genève en Transition](https://www.ge.ch/teaser/geneve-transition)
+It is initiated for [demaincestaujourdhui.online](https://www.demaincestaujourdhui.online/),
+led by [Genève en Transition](https://www.ge.ch/teaser/geneve-transition)
 and [Grand Genève en transition](https://www.grand-geneve.org/grand-geneve-en-transition/).
 
 ## How does it work ?
