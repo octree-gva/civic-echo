@@ -14,6 +14,8 @@ const AUTHORIZED_SOURCE = [
   "sqs",
   "participer",
   "social",
+  "ge",
+  "gdge"
 ];
 
 const mongoDB = new MongoClient(MONGO_URL);
