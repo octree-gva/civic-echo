@@ -1,5 +1,5 @@
 // Link of the clickable logo
-export const logoUrl = "https://mywebsite.com";
+export const logoUrl = "https://www.demaincestaujourdhui.online/";
 
 // Position of questions for personal data
 export const personalIndex = 36;
@@ -16,11 +16,11 @@ export const enableVoucher = true;
 // Partners URL injection
 export const partnersConfig = [
   {
-    name: "Partner A",
-    url: "https://partner-a.com",
+    name: "Genève en Transition",
+    url: "https://www.ge.ch/teaser/geneve-transition",
   },
   {
-    name: "Partner B",
-    url: "https://partner-b.com",
+    name: "Grand Genève en Transition",
+    url: "https://www.grand-geneve-en-transition.org/",
   },
 ];
