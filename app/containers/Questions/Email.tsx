@@ -36,7 +36,7 @@ const Email = (props: Props) => {
   };
 
   return (
-    <Box p={2} textAlign="center">
+    <>
       <Typography variant="h5">{t`email.title`}</Typography>
       <Typography
         variant="body2"
@@ -51,7 +51,7 @@ const Email = (props: Props) => {
         onChange={onTextChange}
       />
       <FormControlLabel
-        sx={{ my: 4, textAlign: 'left' }}
+        sx={{ my: 4, textAlign: "left" }}
         control={
           <Checkbox
             checked={acceptNotif}
@@ -76,7 +76,7 @@ const Email = (props: Props) => {
           endIcon={<ChevronRightIcon />}
         >{t`generic.skip`}</Button>
       </Box>
-    </Box>
+    </>
   );
 };
 

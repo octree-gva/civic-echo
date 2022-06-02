@@ -9,6 +9,9 @@ import ListItemText from "@mui/material/ListItemText";
 import { LANGS } from "../../langs";
 import { useRouter } from "next/router";
 
+const ANIMATE_CLASSES =
+  "animate__animated animate__pulse animate__repeat-2 animate__delay-4 animate__faster";
+
 interface Props {}
 
 const SelectLang = (props: Props) => {
@@ -25,9 +28,12 @@ const SelectLang = (props: Props) => {
     <>
       <Button
         color="primary"
+        variant="contained"
+        sx={{ color: "white" }}
         size="small"
         onClick={toggleModal}
         endIcon={<TranslateIcon />}
+        className={ANIMATE_CLASSES}
       >{t`bottom.langs`}</Button>
       <Dialog open={showModal} keepMounted onClose={toggleModal}>
         <List>

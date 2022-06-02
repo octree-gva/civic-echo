@@ -4,10 +4,10 @@ import Box from "@mui/material/Box";
 import Topbar from "../../containers/Topbar";
 import * as pageUtils from "../../lib/pageUtils";
 import usePersonStore from "../../stores/person";
-
 import Email from "../../containers/Questions/Email";
 import Npa from "../../containers/Questions/Npa";
 import { useRouter } from "next/router";
+import Wrapper from "../../containers/Questions/Wrapper";
 
 const STEPS = [Email, Npa];
 
@@ -47,12 +47,9 @@ const PersonalPage: NextPage<Props> = (props: Props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box
-          maxWidth="40rem"
-          sx={{ bgcolor: "common.white", borderRadius: "24px" }}
-        >
+        <Wrapper>
           <CurrentStep onNext={onNextStep} />
-        </Box>
+        </Wrapper>
       </Box>
     </Box>
   );

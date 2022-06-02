@@ -18,24 +18,26 @@ const Question = (props: Props) => {
   if (!question) return null;
 
   return (
-    <Box p={2} textAlign="center">
-      <Typography variant="h5" sx={{px: 4}}>{question.title}</Typography>
+    <>
+      <Typography variant="h5" sx={{ px: 4 }}>
+        {question.title}
+      </Typography>
       {question.description && (
         <Typography variant="body2" sx={{ pt: 2, px: 4 }}>
           {question.description}
         </Typography>
       )}
-      <Box mt={4}>
+      <Box mt={4} width="100%">
         <Responses question={question} />
       </Box>
       <Button
         size="small"
         color="secondary"
-        sx={{ mt: 4}}
+        sx={{ mt: 4, flexGrow: 0 }}
         onClick={nextQuestion}
         endIcon={<ChevronRightIcon />}
       >{t`generic.skip`}</Button>
-    </Box>
+    </>
   );
 };
 

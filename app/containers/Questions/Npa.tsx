@@ -21,7 +21,7 @@ const Npa = (props: Props) => {
   };
 
   return (
-    <Box p={2} textAlign="center">
+    <>
       <Typography variant="h5">{t`npa.title`}</Typography>
       <Typography
         variant="body2"
@@ -46,7 +46,7 @@ const Npa = (props: Props) => {
           endIcon={<ChevronRightIcon />}
         >{t`generic.skip`}</Button>
       </Box>
-    </Box>
+    </>
   );
 };
 

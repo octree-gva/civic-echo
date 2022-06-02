@@ -23,14 +23,6 @@ const QuestionsPage: NextPage<Props> = (props: Props) => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        sx={{
-          [theme.breakpoints.down("sm")]: {
-            borderBottom: `1px solid ${theme.palette.secondary.main}`,
-            display: "block",
-            maxHeight: `calc(100vh - ${theme.spacing(18)})`,
-            overflowY: "scroll",
-          },
-        }}
       >
         <Questions />
       </Box>
