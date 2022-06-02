@@ -4,16 +4,15 @@ import Button from "@mui/material/Button";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTranslation } from "react-i18next";
 import Responses from "../Responses";
-import useNextQuestion from "../../hooks/useNextQuestion";
 
 interface Props {
   question: FormQuestion;
+  onNext: () => void;
 }
 
 const Question = (props: Props) => {
-  const { question } = props;
+  const { question, onNext } = props;
   const { t } = useTranslation();
-  const nextQuestion = useNextQuestion();
 
   if (!question) return null;
 
@@ -28,13 +27,13 @@ const Question = (props: Props) => {
         </Typography>
       )}
       <Box mt={4} width="100%">
-        <Responses question={question} />
+        <Responses question={question} onNext={onNext} />
       </Box>
       <Button
         size="small"
         color="secondary"
         sx={{ mt: 4, flexGrow: 0 }}
-        onClick={nextQuestion}
+        onClick={onNext}
         endIcon={<ChevronRightIcon />}
       >{t`generic.skip`}</Button>
     </>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 
 interface Props {
   options: KeyValueResponse[];
@@ -31,9 +30,6 @@ const Chips = (props: Props) => {
           onClick={() => onClickChip(option.key)}
           isSelected={selectedKey === option.key}
         >
-          {selectedKey === option.key && (
-            <CheckIcon sx={{ mr: 2, fontSize: "2rem" }} />
-          )}
           {option.value}
         </Chip>
       ))}

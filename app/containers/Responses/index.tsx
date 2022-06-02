@@ -1,16 +1,10 @@
-import dynamic from "next/dynamic";
 import useResponsesStore from "../../stores/responses";
 import ListChoice from "./ListChoice";
 import YesNo from "./YesNo";
 import Text from "./Text";
 import Button from "./Button";
-import SortListCompo from "./SortList";
-import useNextQuestion from "../../hooks/useNextQuestion";
 import Iframe from "./Iframe";
-
-const SortList = dynamic(() => import("./SortList").then(mod => mod.default), {
-  ssr: false,
-}) as typeof SortListCompo;
+import SortList from "./SortList";
 
 const TYPES = {
   LIST_CHOICE: "Choix unique",
@@ -23,11 +17,11 @@ const TYPES = {
 
 interface Props {
   question: FormQuestion;
+  onNext: () => void;
 }
 
 const Responses = (props: Props) => {
-  const { question } = props;
-  const nextQuestion = useNextQuestion();
+  const { question, onNext } = props;
   const addResponse = useResponsesStore(s => s.addResponse);
 
   const onRespond = (response: number | string | string[]) => {
@@ -35,7 +29,7 @@ const Responses = (props: Props) => {
       questionId: question.id,
       content: response,
     });
-    nextQuestion();
+    onNext();
   };
 
   switch (question.type) {

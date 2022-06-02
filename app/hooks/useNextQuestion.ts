@@ -12,6 +12,7 @@ const useNextQuestion = () => {
     s => !!s.person.email && !!s.person.npa
   );
   const updatePerson = usePersonStore(s => s.updatePerson);
+  const isLast: boolean = questionsCount <= currentIndex + 1;
 
   const onNextQuestion = useCallback(() => {
     if (questionsCount > currentIndex + 1) nextQuestion();
@@ -22,7 +23,7 @@ const useNextQuestion = () => {
     }
   }, [questionsCount, currentIndex]);
 
-  return onNextQuestion;
+  return { onNextQuestion, isLast };
 };
 
 export default useNextQuestion;
