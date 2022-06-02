@@ -17,13 +17,14 @@ This database must match to a fixed structure. Eventually, the expected structur
 
 **Default structure**:
 
-- `Question`: Title for the question.
-- `Description`: Arbitrary text field for the question.
-- `Catégorie`: Category / context of the question.
-- `Type`: Type of the question for frontend generation. See below for possible types.
-- `Hyperlien`: URL to use for a question of type _Bouton_
-- `Réponses`: List of possible responses for a question of type _Choix unique_ (CSV format)
-- `Ordre`: Question order index for frontend display
+- `Question` (title): Title for the question.
+- `Description` (text): Arbitrary text field for the question.
+- `Catégorie` (select): Category / context of the question.
+- `Type` (select): Type of the question for frontend generation. See below for possible types.
+- `Hyperlien` (url): URL to use for a question of type _Bouton_
+- `Réponses` (text): List of possible responses for a question of type _Choix unique_ (CSV format)
+- `Ordre` (number): Question order index for frontend display
+- `Aléatoire` (checkbox): Randomise responses for question types _Triage_ and _Choix unique_ to user
 
 Possible types:
 

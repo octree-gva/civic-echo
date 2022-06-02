@@ -48,11 +48,13 @@ questions:
     description: "Fugiat omnis tenetur ut. Consequatur nam aut dolorem perferendis. Id neque magni et cupiditate."
     category: "Habitat"
     type: "Swipe"
+    random: false
   - id: "2fbdb765-5371-4b5f-a7fe-167bd3ffcd5a"
     title: "Avez-vous déménagé il y à moins de 2 ans ?"
     description: ""
     category: "Habitat"
     type: "Swipe"
+    random: false
   - id: "86d088c3-2b68-4dc8-b7a2-8256258e2f7c"
     title: "Qu’est-ce qui est le plus prioritaire à vos yeux ?"
     description: "Trier les éléments du plus prioritaire au moins"
@@ -69,6 +71,7 @@ questions:
         value: "menuiseries"
       - key: "orientation"
         value: "orientation"
+    random: true
   - id: "8ce75b63-08fd-4d71-a5c0-2b006e10cfb3"
     title: "Quel moyen de transport utilisez-vous le plus souvent ?"
     description: ""
@@ -87,6 +90,7 @@ questions:
         value: "scooter"
       - key: "autre"
         value: "autre"
+    random: true
   - id: "57d19a03-845a-41c4-bb86-768d8132019e"
     title: "Combien de temps avant de devoir changer nos habitudes selon les contraintes du climat ?"
     description: "Fugiat omnis tenetur ut. Consequatur nam aut dolorem perferendis. Id neque magni et cupiditate."
@@ -105,12 +109,14 @@ questions:
         value: "30 ans"
       - key: "100 ans"
         value: "100 ans"
+    random: true
   - id: "b9ef6a0c-a630-4d6a-8624-0efb1477d517"
     title: "Si vous deviez nommer une communauté qui vous représente, ce serait laquelle ?"
     description: ""
     category: "social"
     type: "Champ texte"
     responses: "Servette"
+    random: false
   - id: "064bbc8f-32fb-4b98-b6f0-a41a9bb5330d"
     title: "Cliquez ici pour voir ce que les autres pensent"
     description: ""
@@ -118,3 +124,4 @@ questions:
     type: "Iframe"
     link: "https://metabase-8ee.hidora.com/public/dashboard/0ebfeed2-e9b3-4103-9a24-482b013b06e3"
     responses: "Explorer les résultats"
+    random: false

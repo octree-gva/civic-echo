@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { DropResult } from "react-beautiful-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -15,7 +16,9 @@ const SortList = (props: Props) => {
   const { question, onRespond } = props;
   const { t } = useTranslation();
   const [items, setItems] = useState<KeyValueResponse[]>(
-    question.responses as KeyValueResponse[]
+    (question.random
+      ? randomise(question.responses as KeyValueResponse[])
+      : question.responses) as KeyValueResponse[]
   );
 
   useEffect(() => {
@@ -129,4 +132,7 @@ const ListItem = styled(Box)<{ isActive: boolean }>(({ theme, isActive }) => ({
   textOverflow: "ellipsis",
 }));
 
-export default SortList;
+const randomise = (items: any[]) =>
+  items.slice().sort(() => Math.random() - 0.5);
+
+export default dynamic(() => Promise.resolve(SortList), { ssr: false });

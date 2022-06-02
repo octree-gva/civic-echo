@@ -30,6 +30,7 @@ const questions = notionQuestions
       type: Notion.getProp(notionQuestion, "Type"),
       link: Notion.getProp(notionQuestion, "Hyperlien"),
       responses: formatResponses(Notion.getProp(notionQuestion, "Réponses")),
+      random: Notion.getProp(notionQuestion, "Aléatoire"),
     })
   )
   .filter(question => !!question.title);

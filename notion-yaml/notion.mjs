@@ -31,6 +31,8 @@ export const getProp = (notionItem, propertyName) => {
       return property.date;
     case "url":
       return property.url;
+    case "checkbox":
+      return property.checkbox;
     default:
       return property;
   }

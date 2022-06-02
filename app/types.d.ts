@@ -17,6 +17,7 @@ type FormQuestion = {
   type: string;
   link?: string;
   responses?: string | KeyValueResponse[];
+  random?: boolean;
 };
 
 type FormResponse = {
