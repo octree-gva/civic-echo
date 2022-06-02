@@ -19,7 +19,7 @@ const PersonalQuestions: React.FC<PersonQuestionProps>[] = [Email, Npa];
 interface Props {}
 
 const Questions = (props: Props) => {
-  const cardRef = useRef();
+  const cardRef = useRef<HTMLElement>();
   const questions = useQuestionsStore(s => s.questions);
   const { onNextQuestion, isLast } = useNextQuestion();
   const currentQuestionIndex = useQuestionsStore(s => s.currentIndex);

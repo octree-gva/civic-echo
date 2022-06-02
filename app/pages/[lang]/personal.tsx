@@ -18,7 +18,7 @@ interface Props {}
 
 const PersonalPage: NextPage<Props> = (props: Props) => {
   const router = useRouter();
-  const cardRef = useRef();
+  const cardRef = useRef<HTMLElement>();
   const [stepIndex, nextStepIndex] = useReducer(i => i + 1, 0);
   const person = usePersonStore(s => s.person);
   const Steps = useMemo(
