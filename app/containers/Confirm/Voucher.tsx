@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
+import { parseUrl } from "./utils";
 
 const Voucher = () => {
   const { t } = useTranslation();
@@ -17,9 +18,15 @@ const Voucher = () => {
         color="primary"
         sx={{ pb: 2 }}
       >{t`confirm.voucher.primaryText`}</Typography>
-      <Typography>
-        {email} {t(`confirm.voucher.secondaryText`)}
-      </Typography>
+      <Typography
+        dangerouslySetInnerHTML={{
+          __html: parseUrl(
+            `${email} ${t`confirm.simple.primaryText`}`,
+            "explore",
+            "https://exploregeneve.ch/"
+          ),
+        }}
+      ></Typography>
     </Box>
   );
 };

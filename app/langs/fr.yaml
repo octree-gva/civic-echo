@@ -4,7 +4,7 @@ locales:
   closed.title: "C’est fini !"
   closed.button: "Explorer les résultats"
   closed.text: "La démarche est terminée."
-  confirm.simple.primaryText: "Earum neque fuga voluptas eaque esse !"
+  confirm.simple.primaryText: "Earum neque fuga explore eaque esse !"
   generic.error: "Il y a eu une erreur."
   generic.sending: "Envoi des données"
   langs.de: "🇩🇪 Allemand"

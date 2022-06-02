@@ -10,6 +10,9 @@ export const isClosed = false;
 // URL to survey results
 export const resultsUrl = "https://www.metabase.com/";
 
+// Enable voucher after sending form
+export const enableVoucher = true;
+
 // Partners URL injection
 export const partnersConfig = [
   {
