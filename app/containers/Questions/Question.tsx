@@ -19,11 +19,15 @@ const Question = (props: Props) => {
   return (
     <>
       <Typography variant="h5" sx={{ px: 4 }}>
-        {question.title}
+        {question.title?.split("\n").map(line => (
+          <p>{line}</p>
+        ))}
       </Typography>
       {question.description && (
         <Typography variant="body2" sx={{ pt: 2, px: 4 }}>
-          {question.description}
+          {question.description?.split("/n").map(line => (
+            <p>{line}</p>
+          ))}
         </Typography>
       )}
       <Box mt={4} width="100%">
