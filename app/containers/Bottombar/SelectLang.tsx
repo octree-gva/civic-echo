@@ -10,7 +10,7 @@ import { LANGS } from "../../langs";
 import { useRouter } from "next/router";
 
 const ANIMATE_CLASSES =
-  "animate__animated animate__pulse animate__repeat-2 animate__delay-4s animate__faster";
+  "animate__animated animate__pulse animate__repeat-2 animate__delay-2s animate__faster";
 
 interface Props {}
 
@@ -29,8 +29,8 @@ const SelectLang = (props: Props) => {
       <Button
         color="primary"
         variant="contained"
-        sx={{ color: "white" }}
-        size="small"
+        sx={{ color: "white", mb: 1 }}
+        size="medium"
         onClick={toggleModal}
         endIcon={<TranslateIcon />}
         className={ANIMATE_CLASSES}

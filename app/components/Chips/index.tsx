@@ -68,6 +68,7 @@ const Chip = styled("div")<{ isSelected: boolean }>(
     borderColor: isSelected
       ? theme.palette.primary.main
       : theme.palette.grey[400],
+    color: isSelected ? theme.palette.primary.main : theme.palette.text.primary,
   })
 );
 
