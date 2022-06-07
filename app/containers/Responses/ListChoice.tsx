@@ -19,7 +19,7 @@ const ListChoice = (props: Props) => {
   );
 
   const onChange = (response?: KeyValueResponse) => {
-    if (response) onRespond(response.key);
+    if (response) setTimeout(() => onRespond(response.key), 300);
   };
 
   return (

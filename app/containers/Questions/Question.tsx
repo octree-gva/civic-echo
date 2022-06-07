@@ -19,14 +19,14 @@ const Question = (props: Props) => {
   return (
     <>
       <Typography variant="h5" sx={{ px: 4 }}>
-        {question.title?.split("\n").map(line => (
-          <p>{line}</p>
+        {question.title?.split("\n").map((line, index) => (
+          <p key={index}>{line}</p>
         ))}
       </Typography>
       {question.description && (
         <Typography variant="body2" sx={{ pt: 2, px: 4 }}>
-          {question.description?.split("/n").map(line => (
-            <p>{line}</p>
+          {question.description?.split("/n").map((line, index) => (
+            <p key={index}>{line}</p>
           ))}
         </Typography>
       )}

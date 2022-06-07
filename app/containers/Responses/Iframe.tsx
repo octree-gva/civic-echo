@@ -11,7 +11,7 @@ const Iframe = (props: Props) => {
   const [loaded, setLoaded] = useReducer(() => true, false);
   return (
     <Box height="60vh">
-      {!loaded && <LinearProgress sx={{ mt: "50%" }} />}
+      {!loaded && <LinearProgress />}
       <iframe
         src={question.link}
         frameBorder="0"
