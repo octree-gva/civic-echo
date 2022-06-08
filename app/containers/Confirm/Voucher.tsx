@@ -18,8 +18,8 @@ const Voucher = () => {
         color="primary"
         sx={{ pb: 2 }}
       >{t`confirm.voucher.primaryText`}</Text>
-      <Text>
-        `${email} ${t`confirm.voucher.secondaryText`}`
+      <Text sx={{ display: "inline" }}>
+        {email} {t`confirm.voucher.secondaryText`}
       </Text>
     </Box>
   );

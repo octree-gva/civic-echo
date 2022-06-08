@@ -14,7 +14,7 @@ const Button = (props: Props) => {
     <Box>
       <a href={question.link} target="_blank">
         <MUIButton variant="contained">
-          {question.responses || t`generic.openLink`}
+          {(question.responses as string) || t`generic.openLink`}
         </MUIButton>
       </a>
     </Box>

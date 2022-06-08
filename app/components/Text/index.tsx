@@ -2,11 +2,12 @@ import Typography, { TypographyProps } from "@mui/material/Typography";
 
 const Text = (props: TypographyProps) => {
   const { children, ...typoProps } = props;
+  const content = Array.isArray(children) ? children.join("") : children;
   return (
     <Typography
       {...typoProps}
       dangerouslySetInnerHTML={{
-        __html: parseText(`${children}`),
+        __html: parseText(`${content}`),
       }}
     />
   );
