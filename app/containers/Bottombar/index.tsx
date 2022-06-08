@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import StopDialog from "./StopDialog";
 import SelectLang from "./SelectLang";
-import Credentials from "./Credentials";
+import Text from "../../components/Text";
 
 interface Props {}
 
@@ -34,7 +34,14 @@ const Bottombar = (props: Props) => {
           pb={2}
           sx={{ display: { md: "block", xs: "none" } }}
         >
-          <Credentials />
+          <Text
+            variant="caption"
+            sx={{
+              a: {
+                color: "primary.main",
+              },
+            }}
+          >{t`credentials`}</Text>
         </Box>
       </Box>
       <StopDialog open={openDialog} toggle={toggleDialog} />

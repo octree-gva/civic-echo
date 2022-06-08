@@ -12,15 +12,3 @@ export const resultsUrl = "https://www.metabase.com/";
 
 // Enable voucher after sending form
 export const enableVoucher = true;
-
-// Partners URL injection
-export const partnersConfig = [
-  {
-    name: "Genève en Transition",
-    url: "https://www.ge.ch/teaser/geneve-transition",
-  },
-  {
-    name: "Grand Genève en Transition",
-    url: "https://www.grand-geneve-en-transition.org/",
-  },
-];

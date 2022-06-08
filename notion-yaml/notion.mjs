@@ -18,7 +18,7 @@ export const getProp = (notionItem, propertyName) => {
     case "text":
       return property.plain_text;
     case "rich_text":
-      return property.rich_text.map(block => block.plain_text).join("\n\n");
+      return parseRichText(property.rich_text);
     case "title":
       return property.title?.[0]?.plain_text;
     case "number":
@@ -74,3 +74,11 @@ const queryDatabase = async (databaseId, options = {}, start_cursor) => {
     console.error(error);
   }
 };
+
+const parseRichText = (richTextParts = []) =>
+  richTextParts
+    .map(part => {
+      if (part.href) return `[${part.plain_text}](${part.href})`;
+      return part.plain_text;
+    })
+    .join("");

@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTranslation } from "react-i18next";
 import usePersonStore from "../../stores/person";
+import Text from "../../components/Text";
 
 interface Props {
   onNext: () => void;
@@ -22,11 +22,8 @@ const Npa = (props: Props) => {
 
   return (
     <>
-      <Typography variant="h5">{t`npa.title`}</Typography>
-      <Typography
-        variant="body2"
-        sx={{ pt: 2, pb: 4 }}
-      >{t`npa.description`}</Typography>
+      <Text variant="h5">{t`npa.title`}</Text>
+      <Text variant="body2" sx={{ pt: 2, pb: 4 }}>{t`npa.description`}</Text>
       <TextField
         fullWidth
         autoFocus

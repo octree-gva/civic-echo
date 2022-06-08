@@ -3,10 +3,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 import { sendResponse } from "../../lib/sendResponse";
 import { useRouter } from "next/router";
+import Text from "../../components/Text";
 
 interface Props {
   open: boolean;
@@ -36,11 +36,8 @@ const StopDialog = (props: Props) => {
     <Dialog open={open} keepMounted onClose={toggle}>
       {!sent && (
         <DialogContent sx={{ textAlign: "center" }}>
-          <Typography variant="subtitle1">{t`stop.title`}</Typography>
-          <Typography
-            variant="body2"
-            sx={{ mt: 2 }}
-          >{t`stop.notice`}</Typography>
+          <Text variant="subtitle1">{t`stop.title`}</Text>
+          <Text variant="body2" sx={{ mt: 2 }}>{t`stop.notice`}</Text>
           <Box mt={4} display="flex" justifyContent="space-between">
             <Button
               variant="outlined"
@@ -55,12 +52,9 @@ const StopDialog = (props: Props) => {
       )}
       {sent && (
         <DialogContent sx={{ textAlign: "center" }}>
-          <Typography variant="subtitle1">{t`stop.thanks`}</Typography>
-          <Typography
-            variant="body2"
-            sx={{ my: 2 }}
-          >{t`stop.content`}</Typography>
-          <Typography variant="caption">{t`credentials`}</Typography>
+          <Text variant="subtitle1">{t`stop.thanks`}</Text>
+          <Text variant="body2" sx={{ my: 2 }}>{t`stop.content`}</Text>
+          <Text variant="caption">{t`credentials`}</Text>
           <Box mt={4}>
             <Button
               variant="outlined"
