@@ -1,5 +1,7 @@
+// @ts-nocheck
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { DropResult } from "react-beautiful-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Box from "@mui/material/Box";
@@ -92,10 +94,11 @@ const Item = ({
   item: KeyValueResponse;
   isActive?: boolean;
 }) => {
+  const renderDraggable = useDraggableInPortal();
   if (!item.key) return null;
   return (
     <Draggable draggableId={item.key} index={index} key={`key-${item.key}`}>
-      {provided => (
+      {renderDraggable(provided => (
         <ListItem
           ref={provided.innerRef}
           title={item.value}
@@ -105,9 +108,37 @@ const Item = ({
         >
           {index + 1}. {item.value}
         </ListItem>
-      )}
+      ))}
     </Draggable>
   );
+};
+
+const useDraggableInPortal = () => {
+  const self = useRef({}).current;
+
+  useEffect(() => {
+    const div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.pointerEvents = "none";
+    div.style.top = "0";
+    div.style.width = "100%";
+    div.style.height = "100%";
+    div.style.textAlign = "center";
+    self.elt = div;
+    document.body.appendChild(div);
+    return () => {
+      document.body.removeChild(div);
+    };
+  }, [self]);
+
+  return render =>
+    (provided, ...args) => {
+      const element = render(provided, ...args);
+      if (provided.draggableProps.style.position === "fixed") {
+        return createPortal(element, self.elt);
+      }
+      return element;
+    };
 };
 
 const List = styled(Box)<{ count: number }>(({ count }) => ({
