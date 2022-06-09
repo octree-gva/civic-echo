@@ -4,8 +4,8 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import DateAdapter from "@mui/lab/AdapterLuxon";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import theme from "../theme";
 import createEmotionCache from "../lib/createEmotionCache";
 import { useHydrate, Provider } from "../stores/questions";
@@ -34,7 +34,7 @@ const MyApp = (props: MyAppProps) => {
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
-          <LocalizationProvider dateAdapter={DateAdapter}>
+          <LocalizationProvider dateAdapter={AdapterLuxon}>
             <CssBaseline />
             <Component {...pageProps} />
           </LocalizationProvider>
