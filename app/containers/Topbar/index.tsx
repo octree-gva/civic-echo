@@ -25,6 +25,7 @@ const Topbar = (props: Props) => {
               alt="Demain c'est aujourd'hui"
               width="80%"
               height="auto"
+              className="animate__animated animate__fadeIn"
             />
           </a>
         )}
