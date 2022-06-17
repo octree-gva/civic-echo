@@ -19,7 +19,7 @@ const Topbar = (props: Props) => {
         sx={{ [theme.breakpoints.up("sm")]: { pt: 5 } }}
       >
         {hideLogo || (
-          <a href={logoUrl}>
+          <a href={logoUrl} target="_blank">
             <img
               src="/logo.svg"
               alt="Demain c'est aujourd'hui"
