@@ -6,8 +6,11 @@ import { DropResult } from "react-beautiful-dnd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import IconButton from "@mui/material/IconButton";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 interface Props {
   question: FormQuestion;
@@ -35,41 +38,30 @@ const SortList = (props: Props) => {
 
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    const newItems = reorder(
-      items,
-      result.source.index,
-      result.destination.index
-    );
+    onMove(result.source.index, result.destination.index);
+  };
+
+  const onMove = (startIndex: number, endIndex: number) => {
+    if (endIndex < 0) return null;
+    const newItems = reorder(items, startIndex, endIndex);
     setItems(newItems);
   };
 
-  const reorder = (
-    list: KeyValueResponse[],
-    startIndex: number,
-    endIndex: number
-  ) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    return result;
-  };
-
-  const onNext = () => {
-    onRespond(items.map(item => item.key));
-  };
+  const onNext = () => onRespond(items.map(item => item.key));
 
   return (
     <Box width="100%">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="list">
           {provided => (
-            <List
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              count={question.responses?.length || 0}
-            >
+            <List {...provided.droppableProps} ref={provided.innerRef}>
               {items?.map((item, index) => (
-                <Item key={item.key} index={index} item={item} />
+                <Item
+                  key={item.key}
+                  index={index}
+                  item={item}
+                  onMove={onMove}
+                />
               ))}
               {provided.placeholder}
             </List>
@@ -89,10 +81,12 @@ const Item = ({
   index,
   item,
   isActive = false,
+  onMove,
 }: {
   index: number;
   item: KeyValueResponse;
   isActive?: boolean;
+  onMove: (index: number) => void;
 }) => {
   const renderDraggable = useDraggableInPortal();
   if (!item.key) return null;
@@ -106,7 +100,24 @@ const Item = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          {index + 1}. {item.value}
+          <Typography sx={{ p: 2, pr: 0 }}>{index + 1}.</Typography>
+          <Typography sx={{ flex: 1, p: 2 }}>{item.value}</Typography>
+          <Box display="flex" alignItems="center" pr={2}>
+            <IconButton
+              size="large"
+              sx={{ p: 0, mr: 1 }}
+              onClick={() => onMove(index, index + 1)}
+            >
+              <ArrowDropDownIcon fontSize="large" />
+            </IconButton>
+            <IconButton
+              size="large"
+              sx={{ p: 0 }}
+              onClick={() => onMove(index, index - 1)}
+            >
+              <ArrowDropUpIcon fontSize="large" />
+            </IconButton>
+          </Box>
         </ListItem>
       ))}
     </Draggable>
@@ -123,7 +134,6 @@ const useDraggableInPortal = () => {
     div.style.top = "0";
     div.style.width = "100%";
     div.style.height = "100%";
-    div.style.textAlign = "center";
     self.elt = div;
     document.body.appendChild(div);
     return () => {
@@ -141,26 +151,35 @@ const useDraggableInPortal = () => {
     };
 };
 
-const List = styled(Box)<{ count: number }>(({ count }) => ({
-  height: `${count * 62 - 8}px`,
+const reorder = (
+  list: KeyValueResponse[],
+  startIndex: number,
+  endIndex: number
+) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+};
+
+const List = styled(Box)(() => ({
   maxWidth: "100%",
   margin: "0 auto",
 }));
 
 const ListItem = styled(Box)<{ isActive: boolean }>(({ theme, isActive }) => ({
+  display: "flex",
+  justifyContent: "space-between",
   border: `1px solid ${theme.palette.grey[300]}`,
-  padding: theme.spacing(2),
   width: "100%",
   marginBottom: theme.spacing(1),
-  overflow: "hidden",
-  height: "54px",
   boxSizing: "border-box",
   userSelect: "none",
   transition: "background-color 0.4s ease, color 0.4s ease",
   backgroundColor: isActive ? theme.palette.primary.main : "white",
   color: isActive ? "white" : "inherit",
-  whiteSpace: "nowrap",
   textOverflow: "ellipsis",
+  textAlign: "left",
 }));
 
 const randomise = (items: any[]) =>
