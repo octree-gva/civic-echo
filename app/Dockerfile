@@ -1,12 +1,12 @@
-FROM node:18-alpine
+FROM jelastic/nodejs:16.17.0-supervisor
 
-WORKDIR /app
+WORKDIR /home/jelastic/ROOT
 
 COPY . .
 
 EXPOSE 3000
 
-VOLUME /app/node_modules
-VOLUME /app/.next
+VOLUME /home/jelastic/ROOT/node_modules
+VOLUME /home/jelastic/ROOT/.next
 
 CMD ["yarn", "start"]
