@@ -3,21 +3,14 @@ import { MongoClient } from "mongodb";
 import { DateTime } from "luxon";
 import * as Notion from "../../lib/notion";
 
-const { MONGO_URL = "", MONGO_DB = "survey", NOTION_DBID } = process.env;
+const {
+  MONGO_URL = "",
+  MONGO_DB = "survey",
+  NOTION_DBID,
+  AUTHORIZED_SOURCES,
+} = process.env;
 const COLLECTION_NAME = "responses";
-const AUTHORIZED_SOURCE = [
-  "direct",
-  "share",
-  "iframe",
-  "other",
-  "qr",
-  "sqs",
-  "participer",
-  "social",
-  "ge",
-  "gdge"
-];
-
+const authorizedSources = AUTHORIZED_SOURCES?.split(/, ?/) || [];
 const mongoDB = new MongoClient(MONGO_URL);
 
 type DataResponse = {
@@ -36,7 +29,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { person, responses, lang, src = "direct" } = req.body || {};
     const datetime = DateTime.now().toISO();
-    const source = AUTHORIZED_SOURCE.includes(src) ? src : "other";
+    const source = authorizedSources.includes(src) ? src : "other";
     const context = {
       datetime,
       lang,
